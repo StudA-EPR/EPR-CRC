@@ -5,8 +5,8 @@ Steuerung einer Digitalkamera mittels OpenWRT im Rahmen einer Studienarbeit.
 
 ## Konventionen
 
-* Textdateien müssen ausnahmslos mit __UTF-8__ encodiert werden.
-* Textdateien müssen ausnahmslos Unix-Zeilenenden verwenden (etwas anderes akzeptiert GitHub ohnehin nicht).
+* Textdateien müssen ausnahmslos mit __UTF-8__ enkodiert werden.
+* Textdateien müssen ausnahmslos __Unix-Zeilenenden__ verwenden (etwas anderes akzeptiert GitHub ohnehin nicht).
 * __Einrückung durch 4 Spaces__, nicht durch Tabs.
 
 ## LaTeX Dokumentation
