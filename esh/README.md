@@ -23,7 +23,7 @@ Vom Wurzelverzeichnis dieses Git-Repositories könnte eine Templatedatei wie fol
 
 ```sh
 $ cd esh
-$ ./esh examples/oneline_tags
+$ ./esh.sh examples/oneline_tags
 ```
 
 ## ESH-Templates: Syntax
