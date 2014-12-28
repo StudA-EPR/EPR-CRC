@@ -26,51 +26,53 @@ fi
 multiline=false
 buffer=()
 
+# Iterate over the lines of the template file.
 while read line
 do
 	if $multiline
 	then
+		# The "Parser" is inside a multi line esh block.
 		esh_end=$(echo "$line" | sed -n '/<% esh_end %>/p')
 		if [ -n "$esh_end" ]
 		then
-			# Ausführen des Shellcodes
+			# Concatenate all command lines from a buffer to a script.
 			commands=''
 			for command in "${buffer[@]}"
 			do
 				commands=$commands$command'\n'
 			done
 			
-			# Execute the shell command, if there is one.
-			if [ -n "$commands" ]
-			then
-				#output=$(eval $commands)
-				output=$(echo "$commands" | sh)
-			else
-				output=''
-			fi
+			# Execute the shell command, if there is one.	
+			output=$(echo "$commands" | sh)
 			
 			echo "$output"
 							
 			multiline=false
 		else
+			# Continue to read lines into the buffer. The esh block hasn't ended yet.
 			buffer+=("$line")
 		fi
 	else
+		# The parser is not in a multi line esh block.
 		# Extract the shell command from the esh tag.
 		command=$(echo "$line" | sed -n 's/\(^.*\)\(<%\)\(.*\)\(%>\)\(.*$\)/\3/p')
 		if [ "$command" == " esh_begin " ]
 		then
+			# A multi line esh block has begun! Remember it!
 			multiline=true
 		else
 			# Execute the shell command, if there is one.
 			if [ -n "$command" ]
 			then
+				# One line esh command found.
 				output=$(eval $command)
+				
+				# Sometimes, slashes appear in a commands output text. Escape them.
+				output=$(echo "$output" | sed 's/\//\\&/')
 			else
+				# No esh commands found. Just simple html.
 				output=''
 			fi
-			# Sometimes, slashes appear in a commands output text. Escape them.
-			output=$(echo "$output" | sed 's/\//\\&/')
 	
 			# Substitute the original esh tag with its output.
 			substitution=$(echo "$line" | sed 's/<%.*%>/'"$output"'/')
