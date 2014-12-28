@@ -3,7 +3,7 @@ ESH: Embedded Shell
 
 Da für das Webinterface der Kamerafernsteuerung HTML-Webseiten dynamisch generiert werden müssen, wird ein Templatingsystem benötigt.
 
-Traditionelle Templatingsysteme wie PHP oder Java Server Pages (JSP) fallen aus, da sie - auf der stark eingeschränkten - Routerhardware nicht performant genug wären (Beleg durch Tests stehen noch aus). Das benötigte HTML-Markup in einem CGI-Programm zu generieren ist zwar möglich, widerspricht jedoch dem Paradigma Oberflächen und Logik zu trennen. Es würde außerdem Les- und Wartbarkeit des Codes verschlechtern.
+Traditionelle Templatingsysteme wie PHP oder Java Server Pages (JSP) fallen aus, da sie - auf der stark eingeschränkten Routerhardware - nicht performant genug wären (Beleg durch Tests stehen noch aus). Das benötigte HTML-Markup in einem CGI-Programm zu generieren ist zwar möglich, widerspricht jedoch dem Paradigma Oberflächen und Logik zu trennen. Es würde außerdem Les- und Wartbarkeit des Codes verschlechtern.
 
 Ein leichtgewichtiger Interpreter, der auf OpenWRT-Systemen bereits vorhanden ist, ist die Shell. Daher haben wir uns entschieden, ein schlankes Templatingsystem zu implementieren, welches es ermöglicht ausführbaren Shell-Code - mithilfe einer Syntax, die an Embedded Ruby (ERB) erinnert - in HTML-Dateien einzubetten. Dieser ausführbare Shell-Code wird dann vor der Auslieferung der Templatedatei an den Klienten ausgeführt.
 
@@ -17,6 +17,13 @@ Templatedateien werden vom Interpreter mit der Dateiendung `.html.esh` erwartet.
 
 ```sh
 $ esh templatedatei
+```
+
+Vom Wurzelverzeichnis dieses Git-Repositories könnte eine Templatedatei wie folgt ausgeführt werden:
+
+```sh
+$ cd esh
+$ ./esh examples/oneline_tags
 ```
 
 ## ESH-Templates: Syntax
@@ -47,3 +54,11 @@ Zum besseren Verständnis ein Beispieltemplate, das die Dateien in einem Verzeic
 </html>
 
 ```
+
+## Status
+
+Der esh-Interpreter befindet sich noch in Entwicklung. Daher fehlen noch einige Dinge, wie beispielsweise:
+
+* Unterstützung für Multi-Line-Tags.
+* Korrekte Fehlerbehandlung.
+* Ausgabe einer vordefinierten Fehlerseite bei nicht korrekter Ausführbarkeit von Shell-Code (i.d.R. bemerkbar durch Ausgaben auf der Standardfehlerausgabe stderr, diese müsste temporär umgeleitet und abgefangen werden).
