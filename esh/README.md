@@ -42,11 +42,10 @@ Zum besseren Verständnis ein Beispieltemplate, das die Dateien in einem Verzeic
 		<h1>Dateien in /Users/nilssommer/Documents</h1>
 		<ul>
 		<% esh_begin %>
-			# Use a path to an existing directory:
-			image_filenames=$(ls /Users/nilssommer/Documents)
+			image_filenames=(/Users/nilssommer/Documents/*)
 			for filename in "${image_filenames[@]}"
 			do
-				echo "<li>$filename</li>\n"
+				echo "<li>$filename</li>"
 			done
 		<% esh_end %>
 		</ul>
