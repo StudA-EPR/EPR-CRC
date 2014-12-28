@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><% date %></title>
+		<title><% date +"%T" %></title>
 	</head>
 	<body>
 		<h1>Rechnerinfos:</h1>
