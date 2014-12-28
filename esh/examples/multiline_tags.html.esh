@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><% date %></title>
+	</head>
+	<body>
+		<h1>Dateien in /Users/nilssommer/Documents</h1>
+		<ul>
+		<% esh_begin %>
+			# Use a path to an existing directory:
+			image_filenames=$(ls /Users/nilssommer/Documents)
+			for filename in "${image_filenames[@]}"
+			do
+				echo "<li>$filename</li>\n"
+			done
+		<% esh_end %>
+		</ul>
+	</body>
+</html>
