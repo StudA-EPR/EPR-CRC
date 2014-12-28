@@ -29,8 +29,13 @@ do
 	# Extract the shell command from the esh tag.
 	command=$(echo "$line" | sed -n 's/\(^.*\)\(<%\)\(.*\)\(%>\)\(.*$\)/\3/p')
 	
-	# Execute the shell command.
-	output=$(eval $command)
+	# Execute the shell command, if there is one.
+	if [ -n "$command" ]
+	then
+		output=$(eval $command)
+	else
+		output=''
+	fi
 	
 	# Sometimes, slashes appear in a commands output text. Escape them.
 	output=$(echo "$output" | sed 's/\//\\&/')
@@ -38,6 +43,6 @@ do
 	# Substitute the original esh tag with its output.
 	substitution=$(echo "$line" | sed 's/<%.*%>/'"$output"'/')
 	
-	# Print the shit.
+	# Print that shit.
 	echo "$substitution"
 done < "$1.html.esh"
