@@ -48,6 +48,7 @@ do
 			echo "$output"
 							
 			multiline=false
+			buffer=()
 		else
 			# Continue to read lines into the buffer. The esh block hasn't ended yet.
 			buffer+=("$line")
