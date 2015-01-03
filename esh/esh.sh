@@ -23,6 +23,13 @@ then
 	exit 1
 fi
 
+# Any shell code can be appended as a second command line argument
+# when calling the esh interpreter. Execute it!
+if [ $# -eq 2 ]
+then
+	eval "$2"
+fi
+
 multiline=false
 buffer=()
 

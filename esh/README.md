@@ -51,13 +51,24 @@ Zum besseren Verständnis ein Beispieltemplate, das die Dateien in einem Verzeic
 		</ul>
 	</body>
 </html>
-
 ```
+
+## Parameterübergabe
+
+Als zweites Argument, nach der Templatedatei, kann dem esh-Interpreter noch eine Zeichenkette übergeben werden, welche Shell-Kommandos beinhaltet. Diese werden vom Interpreter ausgeführt, bevor die Templatedatei geladen und interpretiert wird.
+
+So lassen sich beispielsweise Werte in der Templatedatei verarbeitet oder ausgegeben werden, die man dem Interpreter zur Laufzeit übergibt.
+
+Beispielaufruf:
+```sh
+$ esh templatedatei "message='Hallo Welt'"
+```
+Beispielverarbeitung:
+`<% echo "$message" %>`
 
 ## Status
 
 Der esh-Interpreter befindet sich noch in Entwicklung. Daher fehlen noch einige Dinge, wie beispielsweise:
 
-* Unterstützung für Multi-Line-Tags.
 * Korrekte Fehlerbehandlung.
 * Ausgabe einer vordefinierten Fehlerseite bei nicht korrekter Ausführbarkeit von Shell-Code (i.d.R. bemerkbar durch Ausgaben auf der Standardfehlerausgabe stderr, diese müsste temporär umgeleitet und abgefangen werden).
