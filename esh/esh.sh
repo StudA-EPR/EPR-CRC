@@ -30,63 +30,63 @@ then
 	eval "$2"
 fi
 
-multiline=false
-buffer=()
+esh_multiline=false
+esh_buffer=()
 
 # Iterate over the lines of the template file.
 while read line
 do
-	if $multiline
+	if $esh_multiline
 	then
 		# The "Parser" is inside a multi line esh block.
 		esh_end=$(echo "$line" | sed -n '/<% esh_end %>/p')
 		if [ -n "$esh_end" ]
 		then
 			# Concatenate all command lines from a buffer to a script.
-			commands=''
-			for command in "${buffer[@]}"
+			esh_commands=''
+			for esh_command in "${esh_buffer[@]}"
 			do
-				commands=$commands$command'\n'
+				esh_commands=$esh_commands$esh_command'\n'
 			done
 			
-			# Execute the shell command, if there is one.	
-			output=$(echo "$commands" | sh)
+			# Execute the shell esh_command, if there is one.	
+			esh_output=$(echo "$esh_commands" | sh)
 			
-			echo "$output"
+			echo "$esh_output"
 							
-			multiline=false
-			buffer=()
+			esh_multiline=false
+			esh_buffer=()
 		else
-			# Continue to read lines into the buffer. The esh block hasn't ended yet.
-			buffer+=("$line")
+			# Continue to read lines into the esh_buffer. The esh block hasn't ended yet.
+			esh_buffer+=("$line")
 		fi
 	else
 		# The parser is not in a multi line esh block.
 		# Extract the shell command from the esh tag.
-		command=$(echo "$line" | sed -n 's/\(^.*\)\(<%\)\(.*\)\(%>\)\(.*$\)/\3/p')
-		if [ "$command" == " esh_begin " ]
+		esh_command=$(echo "$line" | sed -n 's/\(^.*\)\(<%\)\(.*\)\(%>\)\(.*$\)/\3/p')
+		if [ "$esh_command" == " esh_begin " ]
 		then
 			# A multi line esh block has begun! Remember it!
-			multiline=true
+			esh_multiline=true
 		else
-			# Execute the shell command, if there is one.
-			if [ -n "$command" ]
+			# Execute the shell esh_command, if there is one.
+			if [ -n "$esh_command" ]
 			then
-				# One line esh command found.
-				output=$(eval $command)
+				# One line esh esh_command found.
+				esh_output=$(eval $esh_command)
 				
 				# Sometimes, slashes appear in a commands output text. Escape them.
-				output=$(echo "$output" | sed 's/\//\\&/')
+				esh_output=$(echo "$esh_output" | sed 's/\//\\&/')
 			else
 				# No esh commands found. Just simple html.
-				output=''
+				esh_output=''
 			fi
 	
-			# Substitute the original esh tag with its output.
-			substitution=$(echo "$line" | sed 's/<%.*%>/'"$output"'/')
+			# Substitute the original esh tag with its esh_output.
+			esh_substitution=$(echo "$line" | sed 's/<%.*%>/'"$esh_output"'/')
 	
 			# Print that shit.
-			echo "$substitution"
+			echo "$esh_substitution"
 		fi
 	fi
 done < "$1.html.esh"
