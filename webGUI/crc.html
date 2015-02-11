@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>dhbw camera remote control</title>
+</head>
+<body style="background-color: grey">
+<hr>
+<center>
+<h1>EPR-CRC</h1>
+<h3>Startseite <b>E</b>in<b>P</b>latinen<b>R</b>echner - <b>C</b>amera <b>R</b>emote <b>C</b>ontrol</h3>
+</center>
+<form method="GET" action="/cgi-bin/crc-script.sh">
+  <p>
+      Click a button to set furnace runtime
+  </p>
+
+  <p>
+	<input type="button" value="Foto aufnehmen" onclick="this.form.submit()">
+	Foto aufnhmen
+	</input>
+	<br>
+	<input type="submit" value="Debug Ausgabe" onclick="this.form.submit()">
+	Debug Ausgabe
+	</input> <br>
+	<button name="listfiles" type="button" value="Dateien anzeigen" onclick="this.form.submit()">	
+	Dateien anzeigen
+	</button><br>
+  </p>
+</form>
+          
+</body>
+</html>
