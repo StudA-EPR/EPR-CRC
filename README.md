@@ -9,7 +9,8 @@ Um die Anwendung auf ein OpenWrt-Gerät zu deployen, kann das deploy-Skript verw
 
 ```bash
 git clone https://github.com/StudA-EPR/EPR-CRC.git
-./deploy <username@IP_oder_Hostname> <Optionaler Port>
+cd EPR-CRC/
+./deploy.sh <username@IP_oder_Hostname> <Optionaler Port>
 ```
 
 Für Windows ist ein deploy-Skript in Arbeit.
