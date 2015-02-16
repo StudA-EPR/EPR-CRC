@@ -3,6 +3,17 @@ EPR-CRC
 
 Steuerung einer Digitalkamera mittels OpenWRT im Rahmen einer Studienarbeit.
 
+## Deployment
+
+Um die Anwendung auf ein OpenWrt-Gerät zu deployen, kann das deploy-Skript verwendet werden. Unter Mac OS X und Linux ist das die Datei `deploy.sh`.
+
+```bash
+git clone https://github.com/StudA-EPR/EPR-CRC.git
+./deploy <username@IP_oder_Hostname> <Optionaler Port>
+```
+
+Für Windows ist ein deploy-Skript in Arbeit.
+
 ## Konventionen
 
 * Textdateien müssen ausnahmslos mit __UTF-8__ enkodiert werden.
