@@ -18,7 +18,7 @@ echo '<h3>Startseite <u>E</u>in<u>P</u>latinen<u>R</u>echner - <u>C</u>amera <u>
 	echo '<input type="submit" value="ausloesen" name="option">'
 	echo '<input type="submit" value="debug" name="option">'
 	echo '<input type="submit" value="listfiles" name="option">'
-	echo '<input type="reset" value="Reset">'
+	echo '<input type="reset" value="reset">'
 	echo '<p><input type="submit" value="interval" name="option"> shot every <input name="seconds" type="number" min="1" max="9999" value="3"> seconds </p>'
 	echo '</form>'
 
@@ -48,7 +48,7 @@ else
      echo "val_z: " $ZZ
 fi
 
-echo $QUERY_STRING echo $QUERY_STRING | sed ‘s/&/ /g’
+echo $QUERY_STRING echo $QUERY_STRING | sed .s/&/ /g.
 
 echo '<hr>'
 echo '<b>Ausgabe:</b><br>'
@@ -72,6 +72,10 @@ if [ "$OPTION" = "debug" ]; then
 	ausgabe=$(ls -l)
 fi
 
+if [ "$OPTION" = "reset" ]; then
+	ausgabe=$(reboot)
+fi
+
 if [ "$OPTION" = "interval" ]; then
 	ausgabe=$(gphoto2 --capture-image-and-download --interval "$SECONDS")
 fi
@@ -80,9 +84,11 @@ if [ "$OPTION" = "preview" ]; then
 	ausgabe=$(gphoto2 --capture-preview --force-overwrite --filename preview.jpg)
 fi
 
-echo -e $ausgabe | while read line;do
-	echo "$line <br>"
-done 
+if [ "$OPTION" = "reset" ]; then
+	ausgabe=$(gphoto2 --capture-preview --force-overwrite --filename preview.jpg)
+fi
+
+echo "$ausgabe" | sed 's/^.*$/&<br>/g'
 
 echo '<br><img src="../preview.jpg">'
 
