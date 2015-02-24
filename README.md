@@ -13,7 +13,13 @@ cd EPR-CRC/
 ./deploy.sh <username@IP_oder_Hostname> <Optionaler Port>
 ```
 
-Für Windows ist ein deploy-Skript in Arbeit.
+Für Windows dient hierfür die Datei `deploy.bat`.
+
+```bash
+git clone https://github.com/StudA-EPR/EPR-CRC.git
+cd EPR-CRC/
+./deploy.bat <username@IP_oder_Hostname> <Optionaler Port>
+```
 
 ## Konventionen
 
