@@ -57,7 +57,7 @@ winscp /command ^
     "option batch abort" ^
     "open scp://root:%ssh_pw%@%ssh_Server%:%ssh_port%/" ^
     "cd /www/" ^
-	"put /webGUI/*" ^
+	"put /www/*" ^
     "exit"
 
 :: Execute the setup script.

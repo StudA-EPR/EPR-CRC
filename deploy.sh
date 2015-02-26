@@ -49,7 +49,9 @@ ssh $ssh_port_nr_string "$1" '/etc/init.d/uhttpd stop'
 
 # Copy HTML files, ESH templates, assets and CGI scripts.
 echo 'Copying files to the router ...'
-scp $scp_port_nr_string -r ./webGUI/* "$1:/www/"
+scp $scp_port_nr_string -r ./www/* "$1:/www/"
+
+# Copy esh 
 
 # Execute the setup script.
 echo 'Executing setup script ...'
