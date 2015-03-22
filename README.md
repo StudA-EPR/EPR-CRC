@@ -27,7 +27,7 @@ cd EPR-CRC/
 * Textdateien müssen ausnahmslos __Unix-Zeilenenden__ verwenden (etwas anderes akzeptiert GitHub ohnehin nicht).
 * __Einrückung durch 4 Spaces__, nicht durch Tabs.
 
-## Doing backups
+## Backups
 
 Manchmal möchte man Backups der Webanwendung von einem OpenWrt System machen, sei es während der Entwicklung oder auch von einem Produktivsystem. Um nicht jedes mal manuell die Shell-Kommandos hierfür ausführen zu müssen, wurde ein kleines Hilfsskript für Unix-Systeme geschrieben, welches sich wie folgt verwenden lässt.
 
