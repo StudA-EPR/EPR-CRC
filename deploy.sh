@@ -28,37 +28,63 @@ function check_args()
 	fi
 }
 
+# Removes all files listed in deploy_files.conf at the remote system.
+function clean_files()
+{
+	while read line
+	do
+		ssh -n -p $ssh_port $hostname "rm /$line"
+	done < deploy_files.conf
+}
+
+# Create tar archive of files.
+function create_archive()
+{
+	while read line
+	do
+		# Append file/files in line to the tar file.
+		tar rf deployment.tar $line
+	done < deploy_files.conf
+	
+	gzip deployment.tar
+}
+
 ######################
 # Main program
 ######################
 
 check_args $#
 
+hostname=$1
+
+ssh_port=22
 
 if [ $# -eq 2 ]; then
-	ssh_port_nr_string="-p $2"
-	scp_port_nr_string="-P $2"
-else
-	ssh_port_nr_string=''
-	scp_port_nr_string=''
+	ssh_port=$2
 fi
 
 # Stop web server.
 echo 'Stopping the http web server ...'
-ssh $ssh_port_nr_string "$1" '/etc/init.d/uhttpd stop'
+ssh -p $ssh_port $hostname '/etc/init.d/uhttpd stop'
 
-# Copy HTML files, ESH templates, assets and CGI scripts.
-echo 'Copying files to the router ...'
-scp $scp_port_nr_string -r ./www/* "$1:/www/"
+# Clean the remote www folder.
+echo 'Cleaning app files on remote ...'
+clean_files
 
-# Copy esh 
+# Compress app files to archive, transmit them and unpack them on the remote.
+create_archive
+echo "Transmitting compressed files to remote ..."
+scp -q -P $ssh_port deployment.tar.gz "$hostname:/"
+echo "Extracting files on remote ..."
+ssh -p $ssh_port $hostname 'cd / && tar xzf deployment.tar.gz && rm deployment.tar.gz'
+rm deployment.tar.gz
 
 # Execute the setup script.
 echo 'Executing setup script ...'
-ssh $ssh_port_nr_string "$1" 'sh' < setup.sh
+ssh -p $ssh_port $hostname 'sh' < setup.sh
 
 # Start web server.
 echo 'Starting the http web server ...'
-ssh $ssh_port_nr_string "$1" '/etc/init.d/uhttpd start'
+ssh -p $ssh_port $hostname '/etc/init.d/uhttpd start'
 
 echo 'Done!'

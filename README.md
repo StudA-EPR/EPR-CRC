@@ -21,6 +21,8 @@ cd EPR-CRC/
 ./deploy.bat <username@IP_oder_Hostname> <Optionaler Port>
 ```
 
+Welche Dateien deployt werden sollen, kann in der Datei `deploy_files.conf` festgelegt werden (hierfür können auch Wildcards verwendet werden). Alle dort aufgelisteten Dateien werden zu Beginn des Deploys auf dem Zielsystem gelöscht, falls dort bereits vorhanden und dann vom Entwicklersystem dorthin übertragen. Die Datei `deploy_files.conf` wird derzeit nur von der Unix-Version des Deploy-Skripts verwendet.
+
 ## Konventionen
 
 * Textdateien müssen ausnahmslos mit __UTF-8__ enkodiert werden.
