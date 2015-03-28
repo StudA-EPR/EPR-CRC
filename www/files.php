@@ -154,7 +154,7 @@ try {
                             <input type="hidden" name="action" value="mv" />
                             <div class="form-group">
                                 <label for="old-filename" class="control-label">Aktueller Dateiname:</label>
-                                <input type="text" name="file" class="form-control" id="old-filename">
+                                <input type="text" name="file" class="form-control" id="old-filename" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="new-filename" class="control-label">Neuer Dateiname:</label>
