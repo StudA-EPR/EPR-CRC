@@ -15,9 +15,11 @@ class FileManager {
      * @throws FileManagerException $dir is not a directory
      */
     public function __construct($dir) {
+        $dir = realpath($dir);
+
         $fileInfo = new SplFileInfo($dir);
         if (! $fileInfo->isDir()) {
-            throw new FileManagerException($dir . ' is not a directory.');
+            throw new FileManagerException("$dir is not a directory.");
         }
 
         $this->dir = $dir;
@@ -41,7 +43,7 @@ class FileManager {
         $filePath = $this->buildFilenameWithPath($filename);
 
         if (false == unlink($filePath)) {
-            throw new FileManagerException('Deleting ' . $filename . ' failed.');
+            throw new FileManagerException("Deleting $filename failed.");
         }
     }
 
@@ -56,7 +58,7 @@ class FileManager {
         $newFilePath = $this->buildFilenameWithPath($newFilename);
 
         if (false == rename($filePath, $newFilePath)) {
-            throw new FileManagerException('Renaming ' . $oldFilename . ' to ' . $newFilename . ' failed.');
+            throw new FileManagerException("Renaming $oldFilename to $newFilename failed.");
         }
     }
 
@@ -71,12 +73,23 @@ class FileManager {
     }
 
     /**
+     * Get the absolute path of a file.
+     *
+     * @param $filename the filename
+     * @return string the complete absolute path
+     */
+    public function getAbsolutePath($filename) {
+        return $this->getAbsolutePathOfDir() . '/' . $filename;
+    }
+
+    /**
      * Get the size of a file.
      *
      * @param $filename name of the file
      * @return int file size in bytes
      */
     public function getSize($filename) {
+        $filename = $this->buildFilenameWithPath($filename);
         $fileInfo = new SplFileInfo($filename);
         return $fileInfo->getSize();
     }
@@ -98,7 +111,7 @@ class FileManager {
             case 'm':
                 return ($size / 1000000) . ' MB';
             default:
-                throw new FileManagerException("Unknown unit identifier " . $unit . ".");
+                throw new FileManagerException("Unknown unit identifier $unit.");
         }
     }
 
@@ -110,6 +123,7 @@ class FileManager {
      * @return bool|string the modification date
      */
     public function getModDate($filename, $format) {
+        $filename = $this->buildFilenameWithPath($filename);
         $fileInfo = new SplFileInfo($filename);
         $timestamp = $fileInfo->getMTime();
         return date($format, $timestamp);
@@ -122,8 +136,29 @@ class FileManager {
      * @return bool true if it is a directory, otherwise false
      */
     public function isDir($filename) {
+        $filename = $this->buildFilenameWithPath($filename);
         $fileInfo = new SplFileInfo($filename);
         return $fileInfo->isDir();
+    }
+
+    /**
+     * Check whether the filename belongs to an image file.
+     *
+     * @param $filename the filename
+     * @return bool true if it's an image file, otherwise false
+     * @throws FileManagerException pattern matching with the regex failed
+     */
+    public function isImg($filename) {
+        $pattern = '/.+\\.(jpg|png|jpeg|tiff|gif)/';
+
+        $match = preg_match($pattern, $filename);
+        if ($match === false) {
+            throw new FileManagerException("Regex pattern matching failed. Pattern: $pattern filename: $filename");
+        } elseif ($match === 1) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -136,10 +171,23 @@ class FileManager {
         $files = scandir($this->dir);
 
         if ($files == false) {
-            throw new FileManagerException("Couldn't get the files of " . $this->dir . ".");
+            throw new FileManagerException("Couldn't get the files of $this->dir.");
         }
 
         return $files;
+    }
+
+    // Public static methods:
+
+    public static function resolvePath($path) {
+        $pattern = '/\/www\//';
+        $result = preg_replace($pattern, '', $path);
+
+        if ($result == null) {
+            throw new FileManagerException("Regex pattern matching failed. Pattern: $pattern Filename: $path");
+        }
+
+        return $result;
     }
 
     // Private/Protected methods:
@@ -148,4 +196,7 @@ class FileManager {
         return $this->dir . '/' . $filename;
     }
 
+    protected function getAbsolutePathOfDir() {
+        return realpath($this->dir);
+    }
 }
