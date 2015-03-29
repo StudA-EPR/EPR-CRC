@@ -1,48 +1,35 @@
 <?php
 
-require 'classes/filemanager.php';
-
-// TODO: Refactor a lot!
+require_once 'classes/filemanager.php';
+require_once 'classes/httpparameters.php';
 
 //
 // Config stuff:
 //
 
-$filemanager = null;
-
 date_default_timezone_set('UTC');
-
-$fileSizeUnit = 'k';    // kilo byte
-$location = '/www';
-
 $errors = '';
+
+$params = new HttpParameters();
 
 
 //
 // Analyze GET/POST parameters:
 //
 
-// Directory to show.
-if (array_key_exists('location', $_GET)) {
-    $location = $_GET['location'];
-}
+$location      = $params->get('location', 'GET');
+$fileSizeUnit  = $params->get('sizeunit', 'GET');
 
-// Unit of the file size numbers.
-if (array_key_exists('sizeunit', $_GET)) {
-    $fileSizeUnit = $_GET['sizeunit'];
-}
+// Initialize with defaults if no params were transmitted.
+if ($location === null)     $location = '/www';
+if ($fileSizeUnit === null) $fileSizeUnit = 'k';
 
-// Actions: Delete (rm) or Rename (mv).
-if (array_key_exists('file', $_GET) && array_key_exists('action', $_GET)) {
-    $actionFile = $_GET['file'];
-    $actionName = $_GET['action'];
 
-    // action = rename, needs an additional parameter, the new name.
-    if ($actionName == 'mv') {
-        if (array_key_exists('newFile', $_GET)) {
-            $actionFileNew = $_GET['newFile'];
-        }
-    }
+$filemanager = null;
+try {
+    $filemanager = new FileManager($location);
+} catch (FileManagerException $e) {
+    $errors += $e->getMessage() . PHP_EOL;
 }
 
 
@@ -50,25 +37,28 @@ if (array_key_exists('file', $_GET) && array_key_exists('action', $_GET)) {
 // Perform any actions like deleting or renaming files:
 //
 
-try {
-    $filemanager = new FileManager($location);
+if ($params->has('action', 'GET')) {
+    try {
+        $action      = $params->get('action', 'GET');
+        $actionFile  = $params->get('file', 'GET');
 
-    switch ($actionName) {
-        case 'rm':
-            $filemanager->delete($actionFile);
-            break;
-        case 'mv':
-            $filemanager->rename($actionFile, $actionFileNew);
-            break;
-        default:
-            $errors += 'Unknown action ' . $actionName . '.' . PHP_EOL;
-            break;
+        switch ($action) {
+            case 'rm':
+                $filemanager->delete($actionFile);
+                break;
+            case 'mv':
+                $actionFileNew = $params->get('newFile', 'GET');
+                $filemanager->rename($actionFile, $actionFileNew);
+                break;
+            default:
+                $errors += 'Unknown action ' . $actionName . '.' . PHP_EOL;
+                break;
+        }
+
+    } catch (FileManagerException $e) {
+        $errors += $e->getMessage() . PHP_EOL;
     }
-
-} catch(FileManagerException $e) {
-    echo $e->getMessage() . PHP_EOL;
 }
-
 ?>
 
 <!DOCTYPE html>
