@@ -14,7 +14,6 @@
       <?php include("navigation.php") ?>
 		<div id="content-container">
 			<?php 
-			include("basis.php"); 
 			if(isset($_GET["page"]))
 {
 				switch($_GET["page"])
@@ -60,6 +59,7 @@
                     }
                    );        
 	});
+	
 	</script>
 </body>
 </html>
