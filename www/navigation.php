@@ -11,9 +11,9 @@
           </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php?page=basis">Basis</a></li>
-            <li><a href="index.php?page=extended">Erweitert</a></li>
-            <li><a href="index.php?page=extended">Galerie</a></li>
+            <li <?php if($_GET["page"] == "basis") { echo 'class="nav active"'; } ?> >  <a href="index.php?page=basis">Basis</a></li>
+            <li <?php if($_GET["page"] == "extended") { echo 'class="nav active"'; } ?> ><a href="index.php?page=extended">Erweitert</a></li>
+            <li <?php if($_GET["page"] == "gallery") { echo 'class="nav active"'; } ?> ><a href="index.php?page=gallery">Galerie</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Einstellungen <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
