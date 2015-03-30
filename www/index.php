@@ -39,7 +39,7 @@
 	//reload preview image onClick
 	$('#previewDIV a').click(function(){
 		d = new Date();
-		$("#preview").attr("src", "preview.jpg?timestamp="+d.getTime());
+		$("#preview").attr("src", "/photos/preview.jpg?timestamp="+d.getTime());
 	});
 	//call function -> in this case we need a script which returns the console output
 	$('#auto-ausloesen').click(function(){
