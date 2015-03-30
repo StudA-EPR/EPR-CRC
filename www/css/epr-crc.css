@@ -1,0 +1,18 @@
+/*
+ * General styles for the EPR-CRC webapp.
+ * Copyright (C) 2015, Lukas Langenbacher, Nils Sommer
+ */
+ 
+/* Expand filename column of filemanager to the full available width. */
+.filename-column {
+	width: 100%;
+}
+
+.mv-rm-btn-group {
+	white-space: nowrap;
+}
+
+.mv-rm-btn-group > .btn {
+	float: none;
+	display: inline-block;
+}

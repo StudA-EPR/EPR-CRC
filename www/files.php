@@ -66,7 +66,6 @@ if ($params->has('action', 'GET')) {
 <?php include 'header.php'; ?>
 
         <div class="container">
-
 <?php
 
 //
@@ -86,7 +85,7 @@ try {
 
     // Table stuff:
     echo '<table class="table table-striped">' . PHP_EOL;
-    echo '<thead><tr><th>Dateiname</th><th>Dateigröße <span class="label label-default">' . strtoupper($fileSizeUnit . 'b') . '</span></th><th>Modifikationsdatum</th><th></th><th></th></tr></thead>' . PHP_EOL;
+    echo '<thead><tr><th class="filename-column">Dateiname</th><th>Dateigröße&nbsp;<span class="label label-default">' . strtoupper($fileSizeUnit . 'b') . '</span></th><th>Modifikationsdatum</th><th></th></tr></thead>' . PHP_EOL;
     echo '<tbody>' . PHP_EOL;
 
     // Children files:
@@ -107,10 +106,12 @@ try {
         echo '<td>' . $filemanager->getModDate($file, 'Y-m-d H:i:s') . '</td>' . PHP_EOL;
 
         if (! $filemanager->isDir($file)) {
-            echo '<td><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#rename-modal" data-filename="' . $file . '">Umbenennen</button></td>' . PHP_EOL;
-            echo '<td><a href="files.php?file=' . $file . '&action=rm" class="btn btn-danger btn-xs" onclick="javascript:deleteFileConfirm(\'' . $file . '\')"><i class="fa fa-trash"></i> Löschen</a></td>' . PHP_EOL;
+            echo '<td><div class="btn-group btn-group-xs mv-rm-btn-group">' . PHP_EOL;
+            echo '<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#rename-modal" data-filename="' . $file . '">Umbenennen</button>';
+            echo '<a href="files.php?file=' . $file . '&action=rm" class="btn btn-danger btn-xs" onclick="javascript:deleteFileConfirm(\'' . $file . '\')"><i class="fa fa-trash"></i> Löschen</a>' . PHP_EOL;
+            echo '</div></td>' . PHP_EOL;
         } else {
-            echo '<td></td><td></td>' . PHP_EOL;
+            echo '<td></td>' . PHP_EOL;
         }
 
         echo '</tr>' . PHP_EOL;
