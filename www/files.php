@@ -8,9 +8,11 @@ require_once 'classes/httpparameters.php';
 //
 
 date_default_timezone_set('UTC');
-$errors = '';
+$errors     = '';
+$title      = 'Dateimanager';
+$active_tab = 'filemanager';
 
-$params = new HttpParameters();
+$params     = new HttpParameters();
 
 
 //
@@ -61,15 +63,7 @@ if ($params->has('action', 'GET')) {
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-    <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <title>Dateimanager</title>
-    </head>
-    <body>
+<?php include 'header.php'; ?>
 
         <div class="container">
 
@@ -160,8 +154,4 @@ try {
             </div>
         </div>
 
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/epr-crc.js"></script>
-    </body>
-</html>
+<?php include 'footer.php'; ?>

@@ -14,11 +14,11 @@
             <li <?php if($_GET["page"] == "basis") { echo 'class="nav active"'; } ?> >  <a href="index.php?page=basis">Basis</a></li>
             <li <?php if($_GET["page"] == "extended") { echo 'class="nav active"'; } ?> ><a href="index.php?page=extended">Erweitert</a></li>
             <li <?php if($_GET["page"] == "gallery") { echo 'class="nav active"'; } ?> ><a href="index.php?page=gallery">Galerie</a></li>
+            <li<?php if ($active_tab === 'filemanager') echo ' class="active"' ?>><a href="/files.php">Dateimanager</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Einstellungen <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li class="dropdown-header">Camera Remote Control</li>
-                <li><a href="#"><i class="fa fa-floppy-o" style="padding-right:5px;"></i> Dateiverwaltung</a></li>
                 <li><a href="#"><i class="fa fa-info" style="padding-right:13px;"></i> Status</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">OpenWRT</li>
