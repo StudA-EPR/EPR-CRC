@@ -6,7 +6,7 @@
 		
 		<div class="row">
 			<div class="col-md-6 container" id="previewDIV">
-				<a targe="preview.jpg" ><img src="preview.jpg" alt="Preview" id="preview" class="img-rounded img-responsive"></a> <br>
+				<a target="preview.jpg" ><img src="preview.jpg" alt="Preview" id="preview" class="img-rounded img-responsive"></a> <br>
 			</div>
 			<div class="col-md-6">
 				<a class="btn btn-lg btn-primary" id="auto-ausloesen" href="#" role="button"><i class="fa fa-camera"></i> Foto aufnehmen</a>
