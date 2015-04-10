@@ -91,7 +91,7 @@ function preload(arrayOfImages) {
 			interval:false // remove interval for manual sliding
 			});
 			
-		$.getJSON("classes/imagelist.php", function(data){
+		$.getJSON("imagelist.php", function(data){
 		
 			//initialize carousel
 			var start=0;
