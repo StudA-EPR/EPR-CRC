@@ -1,5 +1,5 @@
 <?php
-$img_dir = "../photos/";
+$img_dir = "photos/";
 $images = scandir($img_dir,0);
 $count=0;
 $arr = array();
