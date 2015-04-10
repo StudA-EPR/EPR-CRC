@@ -7,6 +7,3 @@
         <link rel="stylesheet" href="css/epr-crc.css">
         <title><?php echo $title; ?></title>
     </head>
-    <body>
-
-    <?php include 'navigation.php'; ?>
