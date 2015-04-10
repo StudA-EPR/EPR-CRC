@@ -11,6 +11,7 @@
 				case "basis": include("basis.php"); break;
 				case "extended": include("extended.php"); break;
 				case "gallery": include("gallery.php"); break;
+				case "files": include("files.php"); break;
 				default: include("basis.php");
 			   }
 			 }
