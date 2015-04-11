@@ -149,7 +149,7 @@ class FileManager {
      * @throws FileManagerException pattern matching with the regex failed
      */
     public function isImg($filename) {
-        $pattern = '/.+\\.(jpg|png|jpeg|tiff|gif)/';
+        $pattern = '/.+\\.(jpg|png|jpeg|tiff|gif)/i';
 
         $match = preg_match($pattern, $filename);
         if ($match === false) {
