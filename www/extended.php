@@ -5,32 +5,60 @@
 		<div id="content-container">
 		<!-- begin content area -->
 		
-<div class="jumbotron">
-        <h1>Kamerafernsteuerung</h1>
-        <p>Hier erscheint ein preview Bild inklusive der Steuerungsoptionen.</p>
-        <p>Für weitere "Spezialfunktionen" (Intervall-Aufnahmen u. &auml;. wird eine zweite Seite erstellt die versierten Anwendern weitere Optionen bietet. </p>
-	  </div>  
 		
-		<div class="row">
-			<div class="col-md-6 container" id="previewDIV">
-				<a target="preview.jpg" ><img src="preview.jpg" alt="Preview" id="preview" class="img-rounded img-responsive"></a> <br>
-			</div>
-			<div class="col-md-6">
-				<a class="btn btn-lg btn-primary" id="auto-ausloesen" href="#" role="button"><i class="fa fa-camera"></i> Foto aufnehmen</a>
-				<div>Output:
-					<pre id="output">lorem ipsum</pre>
-					
+		
+		<form class="form-horizontal">  
+			<fieldset>
+
+			<!-- Form Name -->
+			<legend>Erweiterte Einstellungen</legend>
+
+			<!-- Serienbilder Input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="appendedtext">Serienaufnahme</label>
+			  <div class="col-md-4">
+				<div class="input-group spinner">
+					<input id="serienbilderAnzahl" name="serienbilderAnzahlInput" class="form-control input-text" placeholder="Aufnahmen" type="text">
+					<div class="input-group-btn-vertical">
+						<button type="button" class="btn btn-default"><i class="fa fa-caret-up"></i></button>
+						<button type="button"  class="btn btn-default"><i class="fa fa-caret-down"></i></button>
+					</div>  
 				</div>
-				
+				<p class="help-block">Anzahl der Serienbilder eingeben</p>
+			  </div>
 			</div>
+			<!-- Intervall Input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="appendedtext">Intervall</label>
+			  <div class="col-md-4">
+				<div class="input-group spinner">
+				  <input id="intervallSekunden" name="intervallSekundenInput" class="form-control input-text" placeholder="Sekunden" type="text">
+				  <div class="input-group-btn-vertical">
+						<button type="button" class="btn btn-default"><i class="fa fa-caret-up"></i></button>
+						<button type="button" class="btn btn-default"><i class="fa fa-caret-down"></i></button>
+					</div>
+				</div>
+				<p class="help-block">Zeit zwischen den Aufnahmen eingeben</p>
+			  </div>
+			</div>
+			<!-- Button -->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="startCapture">Mit diesen Einstellungen aufnehmen</label>
+			  <div class="col-md-4">
+				<button id="startCapture" name="startCapture" class="btn btn-primary"><i class="fa fa-camera"></i> Auslösen</button>
+			  </div>
+			</div>
+
+			</fieldset>
+		</form>
 			
-		</div>
+		
 		<!-- end content area -->
 				</div>
 		<div id="statusDiv"></div>
     </div>
 
 <?php include("footer.php") ?>
-	
+
 </body>
 </html>
