@@ -34,13 +34,14 @@
             <li ><a href="./"><i class="fa fa-folder-open fa-lg"></i></a></li> <!-- Link zur moeglichen Statusseite über verfuegbaren Seicherplatz-->
 			
 			<li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="linkToStatusPage"><i id="linkToStatusPage" class="fa fa-info-circle fa-lg"></i></a>
+              <a href="#"onclick="showStatus()" class="dropdown-toggle" data-toggle="dropdown" id="linkToStatusPage"><i id="linkToStatusPage" class="fa fa-info-circle fa-lg"></i></a>
               <ul class="dropdown-menu" role="menu" id="statusDropDown">
                 
                 
               </ul>
             </li>
-			<li><a href="../navbar-fixed-top/"><i class="fa fa-power-off fa-lg"></i></a></li> 
+			<li><a href="#" onclick="callSystemFunction('shutdown')"><i class="fa fa-power-off fa-lg"></i></a></li> 
+			<li><a href="#" onclick="callSystemFunction('reboot')"><i class="fa fa-power-off fa-lg"></i></a></li> 
           </ul>
 
         </div>

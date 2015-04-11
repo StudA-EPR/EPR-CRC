@@ -25,17 +25,14 @@ $('#previewDIV a').click(function(){
 $('#auto-ausloesen').click(function(){
 	$("#output").load('control.php?option=ausloesen');
 	});
-$('#linkToStatusPage').click(function(){	
+
+function showStatus(){	
 	//$('#statusDropDown').load('status.php #stausDDcontent');
 	$('#statusDropDown').load('status.php?option=spaceinfo').html();
 	//$('#statusDropDown').html($('#statusDDcontent').html());
-});	
-$(function(){
-   $("#linkToStatusPage").hover(function(){
-     $(this).find("#statusDiv").fadeIn();
-   }
-        ,function(){
-                $(this).find("#statusDiv").fadeOut();
-        }
-    );        
-});
+}	
+
+function callSystemFunction(cmd) {
+	$.get( "/systemfunctions.php", { command: cmd} );
+    return false;
+}
