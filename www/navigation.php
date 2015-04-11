@@ -1,3 +1,6 @@
+<?php 
+	$active_tab = basename($_SERVER['REQUEST_URI'], ".php");	
+?>
 <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -11,20 +14,19 @@
           </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li <?php if($_GET["page"] == "basis") { echo 'class="nav active"'; } ?> >  <a href="index.php?page=basis">Basis</a></li>
-            <li <?php if($_GET["page"] == "extended") { echo 'class="nav active"'; } ?> ><a href="index.php?page=extended">Erweitert</a></li>
-            <li <?php if($_GET["page"] == "gallery") { echo 'class="nav active"'; } ?> ><a href="index.php?page=gallery">Galerie</a></li>
-            <!--<li<?php if ($active_tab === 'filemanager') echo ' class="active"' ?>><a href="/files.php">Dateimanager</a></li>-->
-			<li<?php if ($_GET["page"] == "gallery") echo ' class="active"' ?>><a href="index.php?page=files">Dateimanager</a></li>
+            <li <?php if ($active_tab === 'index') {echo ' class="active"';} ?>> <a href="/index.php">Basis</a></li>
+            <li <?php if ($active_tab === 'extended') {echo ' class="active"';} ?>><a href="/extended.php">Erweitert</a></li>
+            <li <?php if ($active_tab === 'gallery') {echo ' class="active"'; } ?> ><a href="/gallery.php">Galerie</a></li>
+            <li <?php if ($active_tab === 'filemanager') {echo ' class="active"';} ?>><a href="/files.php">Dateimanager</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Einstellungen <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li class="dropdown-header">Camera Remote Control</li>
-                <li><a href="#"><i class="fa fa-info" style="padding-right:13px;"></i> Status</a></li>
+                <li><a href="#"  id="linkToStatusPage"><i class="fa fa-info" style="padding-right:13px;"></i> Status</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">OpenWRT</li>
-                <li><a href="#"><i  class="fa fa-wrench" style="padding-right:5px;"></i> Konfiguration</a></li>
-                <li><a href="#" id="linkToStatusPage1"><i class="fa fa-info" style="padding-right:13px;"></i> Status</a></li>
+                <li><a href="/cgi-bin/luci"><i  class="fa fa-wrench" style="padding-right:5px;"></i> Konfiguration</a></li>
+                <li><a href="/cgi-bin/luci" id="linkToStatusPage1"><i class="fa fa-info" style="padding-right:13px;"></i> Status</a></li>
               </ul>
             </li>
           </ul>
@@ -38,12 +40,9 @@
                 
               </ul>
             </li>
+			<li><a href="../navbar-fixed-top/"><i class="fa fa-power-off fa-lg"></i></a></li> 
           </ul>
-		  <!--
-            <li><a href="#" id="linkToStatusPage"><i id="linkToStatusPage" class="fa fa-info-circle fa-lg"></i></a></li> <!-- Link zur Informations-/Statusseite -->
-			<!-- <li><a href="../navbar-fixed-top/"><i class="fa fa-power-off fa-lg"></i></span></a></li> -->
-			
-          </ul>
+
         </div>
       </div>
     </nav>

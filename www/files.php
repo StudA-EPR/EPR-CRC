@@ -62,8 +62,12 @@ if ($params->has('action', 'GET')) {
     }
 }
 ?>
-
-<?php include 'header.php'; ?>
+    <?php include 'header.php'; ?>
+    <body>
+		<div class="container">
+    <?php include 'navigation.php'; ?>
+		<div id="content-container">
+		<!-- begin content area -->
 
         <div class="container">
 <?php
@@ -155,4 +159,12 @@ try {
             </div>
         </div>
 
-<?php include 'footer.php'; ?>
+		<!-- end content area -->
+				</div>
+		<div id="statusDiv"></div>
+    </div>
+
+<?php include("footer.php") ?>
+	
+</body>
+</html>
