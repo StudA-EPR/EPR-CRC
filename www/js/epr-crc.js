@@ -16,11 +16,6 @@ $('#rename-modal').on('shown.bs.modal', function (event) {
 	$('#new-filename').focus();
 });
 
-	//reload preview image onClick
-$('#previewDIV a').click(function(){
-	d = new Date();
-	$("#preview").attr("src", "/photos/preview.jpg?timestamp="+d.getTime());
-});
 //call function -> in this case we need a script which returns the console output
 $('#auto-ausloesen').click(function(){
 	$("#output").load('control.php?option=ausloesen');
