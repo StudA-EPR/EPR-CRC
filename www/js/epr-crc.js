@@ -27,9 +27,22 @@ $('#auto-ausloesen').click(function(){
 	});
 
 function showStatus(){	
-	//$('#statusDropDown').load('status.php #stausDDcontent');
-	$('#statusDropDown').load('status.php?option=spaceinfo').html();
-	//$('#statusDropDown').html($('#statusDDcontent').html());
+	
+	//$('#statusDropDown').load('status.php?option=spaceinfo').html();
+	
+	$.getJSON( "/status.php?option=json", function( data ) {
+	  var items = [];
+	  $.each( data, function( key, val ) {
+		items.push( "<tr><td>" + key + "</td><td>" + val + "</td></tr>" );
+	  });
+	  // clear DropDown Box to prevent multiple appendings
+		$( "#statusDropDown" ).empty();
+		$( "<table/>", {
+			"class": "table",
+			html: items.join( "" )
+		  }).appendTo( "#statusDropDown" );
+	 
+	});
 }	
 
 function callSystemFunction(cmd) {
@@ -46,3 +59,4 @@ function callSystemFunction(cmd) {
     $('.spinner input').val( parseInt($('.spinner input').val(), 10) - 1);
   });
 })(jQuery);
+

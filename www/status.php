@@ -51,7 +51,6 @@
 		echo showUptime();
 	}
 	if($option == "statusumfassend") {
-		//Todo: use htmlentities();
 		echo "<div id=\"statusumfassend\">";
 		echo "	<table>";
 
@@ -76,6 +75,20 @@
 		echo "	</div></td></tr>";
 		echo "	</table>";
 		echo "</div>";
+	}
+	if($option == "json") {
+		$ausgabeArray = array(
+					"uptime" => shell_exec("uptime"),
+					"uname" => shell_exec("uname -a"),
+					//"umgebungsvariablen" => shell_exec("export"),
+					"version" => shell_exec("cat /proc/version"),
+					"spaceFree" => HumanSize(disk_free_space("/")),
+					"spaceTotal" => HumanSize(disk_total_space("/")),
+					
+				);
+		$json = json_encode($ausgabeArray);
+		echo $json;		
+		
 	}
 	
 }
@@ -106,11 +119,9 @@ function showUptime(){
 		$myArray = explode(',', $display);
 		return $myArray[0]; 
 }
-?>
+ //echo urldecode($_SERVER['QUERY_STRING']) 
 
-<?php //echo urldecode($_SERVER['QUERY_STRING']) ?>
-
-		<?php
+		
 		echo parseEchoLines($ausgabe);
 		
 /*
