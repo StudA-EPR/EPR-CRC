@@ -7,6 +7,10 @@
 				if($active_tab=="gallery") {
 					echo "<script src=\"js/gallery.js\"></script>";
 				}
+				if($active_tab=="index") {
+					echo "<script src=\"js/snapshot.js\"></script>";
+				}
+				
 			}
 	?>
 	
