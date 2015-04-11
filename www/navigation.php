@@ -1,6 +1,3 @@
-<?php 
-	$active_tab = basename($_SERVER['REQUEST_URI'], ".php");	
-?>
 <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">

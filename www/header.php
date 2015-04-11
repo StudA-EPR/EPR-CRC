@@ -1,3 +1,15 @@
+<?php 
+	$active_tab = basename($_SERVER['REQUEST_URI'], ".php");	
+	switch($active_tab)
+				{
+				case "index": $title= "Startseite - Basis" ; break;
+				case "extended": $title= "Erweitert" ; break;
+				case "gallery": $title= "Bildergalerie" ; break;
+				case "files": $title= "Filemanager" ; break;
+				default: $title= "Studienarbeit EPRCRC" ;
+				
+			   }
+?>
 <!DOCTYPE html>
 <html>
     <head>
