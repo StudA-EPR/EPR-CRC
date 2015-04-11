@@ -32,6 +32,7 @@
     </div>
 
 <?php include("footer.php") ?>
+    <script src="js/snapshot.js"></script>
 	
 </body>
 </html>

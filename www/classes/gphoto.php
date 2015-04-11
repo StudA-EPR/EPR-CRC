@@ -10,7 +10,7 @@ require_once 'gphotoexception.php';
 class GPhoto {
     public    static $photosDir        = 'photos/';
     protected static $bin              = 'gphoto2';
-    protected static $timestampFormat  = 'Y-m-d H:i:s';
+    protected static $timestampFormat  = 'Y-m-d_H:i:s';
 
     /**
      * Capture an image and download it onto the host system.
