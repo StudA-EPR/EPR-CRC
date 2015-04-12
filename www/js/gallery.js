@@ -33,7 +33,7 @@ function preload(arrayOfImages) {
 		$.getJSON("imagelist.php", function(data){
             
             //first of all -> check whether there are images in the image-array
-            if (!(data.length > 0) ) {
+            if (data.length > 0 ) {
                 
 			//initialize carousel
 			var start=0;
