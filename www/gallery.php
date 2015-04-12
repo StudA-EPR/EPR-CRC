@@ -4,9 +4,9 @@
     <?php include 'navigation.php'; ?>
 		<div id="content-container">
 		<!-- begin content area -->
-<div class="jumbotron">
-        <h1>Bilder-Galerie</h1>
-	  </div>  
+        <div class="page-header">
+            <h1>Bilder-Galerie</h1>
+	    </div>
 		
 		<div class="row">
 			<!-- Modal -->
