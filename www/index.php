@@ -7,7 +7,7 @@
 		<div class="page-header">
             <h1>Kamera auslösen</h1>
         </div>
-		
+	
 		<div class="row">
 			<div class="col-md-6 container" id="previewDIV">
 				<a target="preview.jpg" class="snapshot-link"><img src="preview.jpg" alt="Preview" id="preview" class="img-rounded img-responsive"></a> <br>
