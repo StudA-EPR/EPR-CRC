@@ -31,7 +31,10 @@ function preload(arrayOfImages) {
 			});
 			
 		$.getJSON("imagelist.php", function(data){
-		
+            
+            //first of all -> check whether there are images in the image-array
+            if (!(data.length > 0) ) {
+                
 			//initialize carousel
 			var start=0;
 			for (var i=start, limit=5; i < limit; i++) {
@@ -66,6 +69,15 @@ function preload(arrayOfImages) {
 
 		  
 			});
+        }
+        else {
+            $( "#myCarousel" ).replaceWith( "\
+            <div class=\"alert alert-info \" role=\"alert\">\
+                <h3>Keine Bilder gefunden</h3> \
+                Bisher sind noch keine Bilder im photo-Verzeichnis vorhanden. <br> \
+                Über die Menüpunkte <a href=\"/index.php\" >Basis</a> und <a href=\"/extended.php\" >Erweitert</a> können Fotos aufgenommen werden.\
+            </div>" );
+        }
 	});
 
 });
