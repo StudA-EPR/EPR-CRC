@@ -37,8 +37,7 @@
                 
               </ul>
             </li>
-			<li><a href="#" onclick="callSystemFunction('shutdown')"><i class="fa fa-power-off fa-lg"></i></a></li> 
-			<!-- <li><a href="#" onclick="callSystemFunction('reboot')"><i class="fa fa-power-off fa-lg"></i></a></li>  -->
+						<li><a href="#" onclick="callSystemFunction('reboot')"><i class="fa fa-power-off fa-lg"></i></a></li> 
           </ul>
 
         </div>

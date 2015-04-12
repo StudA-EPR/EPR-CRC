@@ -41,8 +41,24 @@ function showStatus(){
 }	
 
 function callSystemFunction(cmd) {
-	$.get( "/systemfunctions.php", { command: cmd} );
-    return false;
+	var cmdGermanText = '';
+	switch (cmd) {
+		case 'reboot':
+			cmdGermanText = 'neu starten';
+			break;
+		case 'halt':
+			cmdGermanText = 'herunterfahren';
+			break;
+		default:
+			cmdGermanText = 'unbekannte Aktion';
+			break;
+	}
+	
+	var confirmation = confirm("Sind Sie sicher, dass Sie " + cmdGermanText + " wollen?");
+	
+	if (confirmation === true) {
+		$.get( "/systemfunctions.php", { command: cmd} );
+  }
 }
 
 // style spinner buttons in input fields
