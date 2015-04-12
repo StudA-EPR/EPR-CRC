@@ -36,8 +36,12 @@ function preload(arrayOfImages) {
             if (data.length > 0 ) {
                 
 			//initialize carousel
-			var start=0;
-			for (var i=start, limit=5; i < limit; i++) {
+			var start = 0;
+            var limit = 5;
+            if (data.length <5) {
+                limit = data.length;                
+            }
+			for (var i=start, limit; i < limit; i++) {
 				console.log(data[i]);
 				if (i==start) {		
 					$('#sliderwrapper').append("<div class=\"item active\"><img src=\"" + data[i] + "\" ></div>");						
@@ -54,18 +58,27 @@ function preload(arrayOfImages) {
 				idx = $('#myCarousel .item.active').index();	
 				console.log("current index: " + (idx+1));
 				if ( (idx+1) % 5 ==0) {			// every 5th image
-					//console.log("load next 5 images");
-					//$('.item').html("wait...");
-					preload([data[idx+1], data[idx+2],data[idx+3],data[idx+4],data[idx+5]]);
-					console.log("Images preloaded: "+ data[idx+1], data[idx+2],data[idx+3],data[idx+4],data[idx+5]);
-					for (var i=(idx+1); i<(idx+6); i++) {
-						if(i<data.length) {
-							console.log("einbetten: " + data[i]);
-							$('.carousel-inner').append("<div class=\"item\"><img src=\"" + data[i] +"\"></div>");
-							}
-					}
+                    //check wheter there are more images
+                    if (data[idx+1]) {
+                        console.log("next element " + data[idx+1]+" exists");
+                        // check following elemnets and append to load-array
+                        var loadarray = new Array();
+                        var loadcount=0;
+                         for (i=(idx+1); i<(idx+6); i++) {
+                            if (data[i]) {loadarray[loadcount]=data[i]}
+                            loadcount++;                            
+                         }
+					preload(loadarray);
+					console.log("Images preloaded: "+ loadarray);
+                    //for (var i = 0; i < arrayLength; i++) {
+                        loadarray.forEach(function(entry) {
+                                                    console.log("einbetten: " +entry);
+                                                    $('.carousel-inner').append("<div class=\"item\"><img src=\"" + entry +"\"></div>");
+                        });
+                }
 					
 				}
+                
 
 		  
 			});
