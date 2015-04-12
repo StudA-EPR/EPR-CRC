@@ -4,11 +4,9 @@
     <?php include 'navigation.php'; ?>
 		<div id="content-container">
 		<!-- begin content area -->
-		<div class="jumbotron">
-        <h1>Kamerafernsteuerung</h1>
-        <p>Hier erscheint ein preview Bild inklusive der Steuerungsoptionen.</p>
-        <p>Für weitere "Spezialfunktionen" (Intervall-Aufnahmen u. &auml;. wird eine zweite Seite erstellt die versierten Anwendern weitere Optionen bietet. </p>
-	  </div>  
+		<div class="page-header">
+            <h1>Kamera auslösen</h1>
+        </div>
 		
 		<div class="row">
 			<div class="col-md-6 container" id="previewDIV">
