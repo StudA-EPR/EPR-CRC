@@ -3,6 +3,15 @@ EPR-CRC
 
 Steuerung einer Digitalkamera mittels OpenWRT im Rahmen einer Studienarbeit.
 
+## Benötigte Pakete
+
+* php5
+* php5-cgi
+* php5-mod-json
+* zoneinfo-core
+
+Detaillierte Anweisungen bezüglich Konfiguration des OpenWrt-Routers sind der Dokumentation (PDF-Bericht) zu entnehmen.
+
 ## Deployment
 
 Um die Anwendung auf ein OpenWrt-Gerät zu deployen, kann das deploy-Skript verwendet werden. Unter Mac OS X und Linux ist das die Datei `deploy.sh`.
