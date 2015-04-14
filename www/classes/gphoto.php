@@ -36,24 +36,51 @@ class GPhoto {
 
     /**
      * Get the configuration of gphoto.
+     * This uses the --list-config switch of gphoto.
      *
-     * @return string the configuration
+     * @return array the configuration
      */
     public static function listConfig() {
         $eval = self::$bin . ' --list-config';
-        $output = self::execute($eval);
-        return $output;
+        $configList = self::execute($eval);
+        return $configList;
     }
 
     /**
      * Get information about the camera storage.
+     * This uses the --storage-info switch of gphoto.
      *
-     * @return string the storage info
+     * @return array the storage info
      */
     public static function storageInfo() {
         $eval = self::$bin . ' --storage-info';
-        $output = self::execute($eval);
-        return $output;
+        $storageInfo = self::execute($eval);
+        return $storageInfo;
+    }
+
+    /**
+     * Get the abilities of the connected camera.
+     * This uses the --abilities switch of gphoto.
+     *
+     * @return mixed
+     */
+    public static function listAbilities() {
+        $eval = self::$bin . ' --abilities';
+        $abilities = self::execute($eval);
+        return $abilities;
+    }
+
+    /**
+     * Get the configuration details for a specific configuration descriptor.
+     * This uses the --get-config switch of gphoto.
+     *
+     * @param $configDescriptor the descriptor
+     * @return mixed the configuration details
+     */
+    public static function getConfig($configDescriptor) {
+        $eval = self::$bin . " --get-config $configDescriptor";
+        $config = self::execute($eval);
+        return $config;
     }
 
 
@@ -73,7 +100,7 @@ class GPhoto {
             throw new GPhotoException("The execution of `$eval` failed.", $exitCode, self::arrayToString($output));
         }
 
-        return self::arrayToString($output);
+        return $output;
     }
 
     /**
