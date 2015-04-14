@@ -57,18 +57,14 @@
             <!-- Verschlusszeit-->
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="appendedtext">Verschlusszeit</label>
-			  <div class="col-md-4">
-				<div class="input-group">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action <span class="caret"></span></button>
-                    <ul class="dropdown-menu" role="menu" id="dropdownVerschlusszeit">
-                      <li><a href="#">mit</a></li>
-                      <li><a href="#">ausgelesenen</a></li>
-                      <li><a href="#">werten auffüllen</a></li>
-                    </ul>
-                  </div><!-- /btn-group -->
-                  <input type="text" class="form-control" aria-label="..." id="inputVerschlusszeit" >
-                </div><!-- /input-group -->
+			  <div class="col-md-4">			
+                  <select class="form-control">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                   </select>               
 				<p class="help-block">Verschlusszeit für die Aufnahme wählen</p>
 			  </div>
                <div class="col-md-4">
@@ -78,21 +74,18 @@
                  </label>
               </div>
 			</div>
+            
             <!-- Blende-->
-			<div class="form-group">
+            <div class="form-group">
 			  <label class="col-md-4 control-label" for="appendedtext">Blende</label>
-			  <div class="col-md-4">
-				<div class="input-group">
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action <span class="caret"></span></button>
-                    <ul class="dropdown-menu" role="menu" id="dropdownBlende">
-                      <li><a href="#">mit</a></li>
-                      <li><a href="#">ausgelesenen</a></li>
-                      <li><a href="#">werten auffüllen</a></li>
-                    </ul>
-                  </div><!-- /btn-group -->
-                  <input type="text" class="form-control" aria-label="..." id="inputBlende" >
-                </div><!-- /input-group -->
+			  <div class="col-md-4">			
+                  <select class="form-control">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                   </select>               
 				<p class="help-block">Verschlusszeit für die Aufnahme wählen</p>
 			  </div>
                <div class="col-md-4">
@@ -118,7 +111,29 @@
 				</div>
 		<div id="statusDiv"></div>
     </div>
+<?php 
+require_once 'classes/gphoto.php';
+date_default_timezone_set('UTC');
 
+try {
+    $configs = GPhoto::listConfig();
+    
+    var_dump($configs);
+    
+    foreach ( $configs as $config) {
+        $configDetails = GPhoto::getConfig($config);
+
+        foreach ($configDetails as &$line) {
+            echo $line . '<br />';
+        }
+    }
+
+} catch (GPhotoException $e) {
+    echo $e->getMessage() . PHP_EOL;
+}
+?>
+    
+    
 <?php include("footer.php") ?>
 
 </body>
