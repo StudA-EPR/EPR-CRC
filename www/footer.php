@@ -8,7 +8,8 @@
 					echo "<script src=\"js/gallery.js\"></script>";
 				}
 				if($active_tab=="index") {
-					echo "<script src=\"js/snapshot.js\"></script>";
+                    echo "<script src=\"js/snapshot.js\"></script>";
+                    echo "<script src=\"js/extended.js\"></script>";
 				}
 				
 			}

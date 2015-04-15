@@ -96,9 +96,6 @@
 
 			</fieldset>
 		</form>
-        
-<?php 
 
-?>
-    
+
  

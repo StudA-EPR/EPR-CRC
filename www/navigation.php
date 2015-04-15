@@ -11,8 +11,7 @@
           </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li <?php if ($active_tab === 'index') {echo ' class="active"';} ?>> <a href="/index.php">Basis</a></li>
-            <li <?php if ($active_tab === 'extended') {echo ' class="active"';} ?>><a href="/extended.php">Erweitert</a></li>
+            <li <?php if ($active_tab === 'index') {echo ' class="active"';} ?>> <a href="/index.php">Foto aufnehmen</a></li>
             <li <?php if ($active_tab === 'gallery') {echo ' class="active"'; } ?> ><a href="/gallery.php">Galerie</a></li>
             <li <?php if ($active_tab === 'filemanager') {echo ' class="active"';} ?>><a href="/files.php">Dateimanager</a></li>
             <li class="dropdown">
