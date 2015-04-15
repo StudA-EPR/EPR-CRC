@@ -1,5 +1,7 @@
 <?php
 
+require_once 'gphoto.php';
+
 /**
  * Class OptionType
  *
