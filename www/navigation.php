@@ -18,20 +18,19 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Einstellungen <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li class="dropdown-header">Camera Remote Control</li>
-                <li><a href="#"  id="linkToStatusPage"><i class="fa fa-info" style="padding-right:13px;"></i> Status</a></li>
+                <!-- <li class="dropdown-header">Camera Remote Control</li>
+                <li><a href="#" id="linkToStatusPageMenu" ><i class="fa fa-info" style="padding-right:13px;"></i> Status</a></li> -->
                 <li class="divider"></li>
                 <li class="dropdown-header">OpenWRT</li>
                 <li><a href="/cgi-bin/luci"><i  class="fa fa-wrench" style="padding-right:5px;"></i> Konfiguration</a></li>
-                <li><a href="/cgi-bin/luci" id="linkToStatusPage1"><i class="fa fa-info" style="padding-right:13px;"></i> Status</a></li>
               </ul>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li ><a href="./"><i class="fa fa-folder-open fa-lg"></i></a></li> <!-- Link zur moeglichen Statusseite über verfuegbaren Seicherplatz-->
 			
-			<li class="dropdown">
-              <a href="#"onclick="showStatus()" class="dropdown-toggle" data-toggle="dropdown" id="linkToStatusPage"><i id="linkToStatusPage" class="fa fa-info-circle fa-lg"></i></a>
+			<li class="dropdown" id="statusMenu">
+              <a href="#"onclick="showStatus()" class="dropdown-toggle" data-toggle="dropdown" id="linkToStatusPage"><i id="linkToStatusPageIcon" class="fa fa-info-circle fa-lg"></i></a>
               <ul class="dropdown-menu" role="menu" id="statusDropDown">
                 
                 

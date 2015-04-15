@@ -23,8 +23,8 @@ $('#auto-ausloesen').click(function(){
 
 function showStatus(){	
 	
-	//$('#statusDropDown').load('status.php?option=spaceinfo').html();
-	
+    
+	//$('#statusDropDown').load('status.php?option=spaceinfo').html();    
 	$.getJSON( "/status.php?option=json", function( data ) {
 	  var items = [];
 	  $.each( data, function( key, val ) {
@@ -38,7 +38,12 @@ function showStatus(){
 		  }).appendTo( "#statusDropDown" );
 	 
 	});
-}	
+}
+ function buttonStatus_Click() {
+   //$('#linkToStatusPage').click();
+   $("#linkToStatusPageMenu").dropdown();
+   
+  }	
 
 function callSystemFunction(cmd) {
 	var cmdGermanText = '';
