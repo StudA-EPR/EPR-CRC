@@ -121,6 +121,20 @@ class Option {
         return $array;
     }
 
+    /**
+     * Reset the current value.
+     * To make the camera use the new value, use GPhoto::setConfig(Option $option).
+     * If the given value is not part of the choices, it is treated as invalid and will be ignored.
+     *
+     * @param $current the new current value
+     */
+    public function setCurrent($current)
+    {
+        if (in_array($current, $this->choices)) {
+            $this->current = $current;
+        }
+    }
+
     // Getters:
 
     public function getOption()

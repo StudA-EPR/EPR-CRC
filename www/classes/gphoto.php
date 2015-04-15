@@ -1,6 +1,7 @@
 <?php
 
 require_once 'gphotoexception.php';
+require_once 'option.php';
 
 /**
  * Class GPhoto
@@ -81,6 +82,18 @@ class GPhoto {
         $eval = self::$bin . " --get-config $configDescriptor";
         $config = self::execute($eval);
         return $config;
+    }
+
+
+    /**
+     * Save the option to the camera.
+     * This uses the --set-config switch of gphoto.
+     *
+     * @param Option $option the option to set
+     */
+    public static function setConfig(Option $option) {
+        $eval = self::$bin . ' --set-config ' . $option->getOption() . '="' . $option->getCurrent() . '"';
+        self::execute($eval);
     }
 
 
