@@ -112,7 +112,7 @@ try {
         if (! $filemanager->isDir($file)) {
             echo '<td><div class="btn-group btn-group-xs mv-rm-btn-group">' . PHP_EOL;
             echo '<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#rename-modal" data-filename="' . $file . '">Umbenennen</button>';
-            echo '<a href="files.php?file=' . $file . '&action=rm" class="btn btn-danger btn-xs" onclick="javascript:deleteFileConfirm(\'' . $file . '\')"><i class="fa fa-trash"></i> Löschen</a>' . PHP_EOL;
+            echo '<a href="files.php?location=' . $filemanager->getDir() . '&file=' . $file . '&action=rm" class="btn btn-danger btn-xs" onclick="javascript:deleteFileConfirm(\'' . $file . '\')"><i class="fa fa-trash"></i> Löschen</a>' . PHP_EOL;
             echo '</div></td>' . PHP_EOL;
         } else {
             echo '<td></td>' . PHP_EOL;
@@ -141,6 +141,7 @@ try {
                     <form method="GET" action="/files.php">
                     <div class="modal-body">
                             <input type="hidden" name="action" value="mv" />
+                            <input type="hidden" name="location" value="<?php echo $filemanager->getDir(); ?>">
                             <div class="form-group">
                                 <label for="old-filename" class="control-label">Aktueller Dateiname:</label>
                                 <input type="text" name="file" class="form-control" id="old-filename" readonly>
