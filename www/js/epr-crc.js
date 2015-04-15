@@ -75,3 +75,9 @@ function callSystemFunction(cmd) {
     $('.spinner input').val( parseInt($('.spinner input').val(), 10) - 1);
   });
 })(jQuery);
+
+
+$('#myTab a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+});

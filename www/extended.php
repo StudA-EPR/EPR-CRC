@@ -1,12 +1,3 @@
-    <?php include 'header.php'; ?>
-    <body>
-		<div class="container">
-    <?php include 'navigation.php'; ?>
-		<div id="content-container">
-		<!-- begin content area -->
-		
-		
-		
 		<form class="form-horizontal">  
 			<fieldset>
 
@@ -105,36 +96,9 @@
 
 			</fieldset>
 		</form>
-			
-		
-		<!-- end content area -->
-				</div>
-		<div id="statusDiv"></div>
-    </div>
+        
 <?php 
-require_once 'classes/gphoto.php';
-date_default_timezone_set('UTC');
 
-try {
-    $configs = GPhoto::listConfig();
-    
-    var_dump($configs);
-    
-    foreach ( $configs as $config) {
-        $configDetails = GPhoto::getConfig($config);
-
-        foreach ($configDetails as &$line) {
-            echo $line . '<br />';
-        }
-    }
-
-} catch (GPhotoException $e) {
-    echo $e->getMessage() . PHP_EOL;
-}
 ?>
     
-    
-<?php include("footer.php") ?>
-
-</body>
-</html>
+ 
