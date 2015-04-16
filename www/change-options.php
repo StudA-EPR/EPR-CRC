@@ -2,6 +2,7 @@
 
 require_once 'classes/httpparameters.php';
 require_once 'classes/option.php';
+require_once 'classes/gphotoutils.php';
 
 $params     = new HTTPParameters();
 $descriptor = $params->get('descriptor', 'GET');
@@ -13,7 +14,7 @@ try {
     GPhoto::setConfig($option);
     $response = array('error' => false);
 } catch (GPhotoException $e) {
-    $response = array('error' => true, 'exitCode' => $e->getExitCode(), 'message' => $e->getMessage(), 'output' => $e->getOutput());
+    $response = GPhotoUtils::toArray($e);
 }
 
 header('Content-Type: application/json');

@@ -29,4 +29,18 @@ class GPhotoUtils {
             <strong>Stderr: </strong><br />$output \
         </div>";
     }
+
+    /**
+     * Put the content of the GPhotoException into a key-value-pair array.
+     * This method might be useful when generating JSON-files out of arrays.
+     *
+     * @param GPhotoException $exception the GPhotoException
+     * @return array the array
+     */
+    public static function toArray(GPhotoException $exception) {
+        return array('error' => true,
+            'exitCode' => $exception->getExitCode(),
+            'message' => $exception->getMessage(),
+            'output' => $exception->getOutput());
+    }
 }

@@ -6,6 +6,7 @@
 
 require_once 'classes/httpparameters.php';
 require_once 'classes/gphoto.php';
+require_once 'classes/gphotoutils.php'
 
 date_default_timezone_set('UTC');
 
@@ -26,7 +27,7 @@ try {
     $response = array('filename' => $filename, 'error' => false);
 } catch (GPhotoException $e) {
     //$errorMarkup = GPhotoUtils::formatGPhotoException($e);
-    $response = array('error' => true, 'exitCode' => $e->getExitCode(), 'message' => $e->getMessage(), 'output' => $e->getOutput());
+    $response = GPhotoUtils::toArray($e);
 }
 
 //
