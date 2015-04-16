@@ -1,4 +1,8 @@
-    <?php include 'header.php'; ?>
+<?php
+$active_tab = 'index';
+$title      = 'Schnappschuss aufnehmen';
+include 'header.php';
+?>
     <body>
 		<div class="container">
     <?php include 'navigation.php'; ?>

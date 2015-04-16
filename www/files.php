@@ -10,7 +10,7 @@ require_once 'classes/httpparameters.php';
 date_default_timezone_set('UTC');
 $errors     = '';
 $title      = 'Dateimanager';
-$active_tab = 'filemanager';
+$active_tab = 'files';
 
 $params     = new HttpParameters();
 

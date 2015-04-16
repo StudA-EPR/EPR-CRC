@@ -13,7 +13,7 @@
           <ul class="nav navbar-nav">
             <li <?php if ($active_tab === 'index') {echo ' class="active"';} ?>> <a href="/index.php">Foto aufnehmen</a></li>
             <li <?php if ($active_tab === 'gallery') {echo ' class="active"'; } ?> ><a href="/gallery.php">Galerie</a></li>
-            <li <?php if ($active_tab === 'filemanager') {echo ' class="active"';} ?>><a href="/files.php">Dateimanager</a></li>
+            <li <?php if ($active_tab === 'files') {echo ' class="active"';} ?>><a href="/files.php">Dateimanager</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Einstellungen <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
