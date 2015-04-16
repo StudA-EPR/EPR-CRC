@@ -176,10 +176,41 @@ var ladeBlende = (function () {
         });
 });
 
+var checkAndLoadISO = (function () {
+    $.ajax({
+        url: "/option-json.php",
+        data: {descriptor: "/main/imgsettings/isoauto"},
+        method: "GET",
+        dataType: "json",
+    })
+        .done(function (data) {
+            if (data.error === false) {
+                //data downloaded
+                //now data variable contains data in json form
+                var isoautoState = true;
+                isoautoState = isoauto.current;
+            } else {
+                // Error handling (show the exception):
+                $('#gphoto-exception-wrapper-extended').html(" \
+					<div class=\"alert alert-warning alert-dismissible\" role=\"alert\"> \
+            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> \
+            <strong>GPhotoException</strong> " + blendedata.message + " \
+            <br /> \
+            <strong>Exit code: </strong> " + blendedata.exitCode + " \
+            <br /> \
+            <strong>Stderr: </strong><br />" + blendedata.output + " \
+        </div> \
+				");
+            }
+
+
+            ladeISO(isoautoState);
+        });
+});
 
 // Fucntion for ISO Values
-//FOR ISO, we first need to check whether autoiso is activated or not
-var ladeISO = (function () {
+//FOR ISO, we first need to check whether autoiso is activated or not. This is done by the checkAndLoadISO function
+var ladeISO = (function (autoState) {
     $.ajax({
         url: "/option-json.php",
         data: {descriptor: "/main/imgsettings/iso"},
@@ -198,8 +229,7 @@ var ladeISO = (function () {
                 //now data variable contains data in json format
                 var choices = data.choices;
                 var current = data.current;
-                var isoauto = false; //TODO: check /main/imgsettings/isoauto whether current ="off"
-                if (isoauto == true) //check whether iso automatic is activated or not
+                if (autoState== "On") //check whether iso automatic is activated or not
                 {
                     $('#isoinfo').text("Auswahl nicht mglich, da ISO-Automatik aktiviert");
                 }
@@ -237,3 +267,4 @@ var ladeISO = (function () {
             }
         });
 });
+
