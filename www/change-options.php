@@ -3,29 +3,25 @@
 require_once 'classes/httpparameters.php';
 require_once 'classes/option.php';
 
-$params   = new HTTPParameters();
-$redirect = '/extended.php';
-
-if ($params->has('descriptor', 'GET')) {
-    $descriptor = $params->get('descriptor', 'GET');
-} else {
-    // Redirect to settings page.
-    header("Location: $redirect?status=error&msg=No%20Descriptor");
-    die();
-}
-
-
-$value  = $params->get('value', 'GET');
-$option = new Option($descriptor);
-$option->setCurrent($value);
+$params     = new HTTPParameters();
+$descriptor = $params->get('descriptor', 'GET');
+$value      = $params->get('value', 'GET');
 
 try {
+    $option = new Option($descriptor);
+    $option->setCurrent($value);
     GPhoto::setConfig($option);
-    $redirect .= '?status=success';
+    $response = array('error' => false);
 } catch (GPhotoException $e) {
-    $redirect .= '?status=error&msg=exception';
+    $response = array('error' => true, 'exitCode' => $e->getExitCode(), 'message' => $e->getMessage(), 'output' => $e->getOutput());
 }
 
-// Redirect to settings page.
-header("Location: $redirect");
-die();
+header('Content-Type: application/json');
+$json = json_encode($response);
+
+if ($json === false) {
+    // Error:
+    echo '{}';
+} else {
+    echo $json;
+}
