@@ -45,7 +45,14 @@ var ladeKameraInfo = (function () {
                     })
                         .done( function(data) {
                             batterylevel = data.current;
-                            $('#cameraInfoTable > tbody > tr').append('<td>'+ batterylevel + '</td>');
+                            batterylevelNumber = batterylevel.slice(0,-1);
+                            //$('#cameraInfoTable > tbody > tr').append('<td>'+ batterylevel + '</td>');
+                            $('#cameraInfoTable > tbody > tr').append('<td>' +
+                            '<div class=\"progress\">' +
+                            '<div class=\"progress-bar\" role=\"progressbar progress-bar-success\" aria-valuenow=\"'+ batterylevelNumber +'\"'+
+                            'aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:' + batterylevel +'\">'+
+                            batterylevel +
+                            '</div></div></td>');
                             ladeVerschlusszeit();
                         });
 
@@ -53,29 +60,6 @@ var ladeKameraInfo = (function () {
 
 
     });
-    /*
-    $.ajax({
-        url: "/option-json.php?descriptor=%2Fmain%2Fstatus%2Fmanufacturer",
-        method: "GET",
-        dataType: "json",
-    })
-        .done( function(data) {
-            manufacturer = data.current;
-            console.log("hersteller: " + manufacturer);
-        });
-
-    $.ajax({
-        url: "/option-json.php?descriptor=%2Fmain%2Fstatus%2Fcameramodel",
-        method: "GET",
-        dataType: "json",
-    })
-        .done( function(data) {
-            model = data[0].current;
-        });
-     $('#cameraInfoTable > tbody').html('<tr><td>Kamera Hersteller: </td><td>'+ manufacturer + '</td></tr>'+
-                                '<tr><td>Kamera Modell: </td><td>'+ model + '</td></tr>'+
-                                '<tr><td>Akkustand: </td><td>'+ batterylevel + '</td></tr>');
-                                */
 });
 
 // function for shutterspeed settings
