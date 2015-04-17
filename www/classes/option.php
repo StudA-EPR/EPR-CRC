@@ -68,7 +68,7 @@ class Option {
 
         if ($this->type === OptionType::RADIO) {
             $detailsSize = count($details);
-            $pattern     = '/Choice: [0-9] /';
+            $pattern     = '/Choice: [0-9]+ /';
 
             for ($i = 3; $i < $detailsSize; $i++) {
                 $currentLine = $details[$i];
