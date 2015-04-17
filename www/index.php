@@ -1,4 +1,11 @@
 <?php
+require_once 'classes/ioutils.php';
+$newest_image = IOUtils::getNewestPhotoFile('/www/photos');
+if ($newest_image === null) {
+    $newest_image = 'preview.jpg';
+} else {
+    $newest_image = preg_replace('/\/www\//', '', $newest_image);
+}
 $active_tab = 'index';
 $title      = 'Schnappschuss aufnehmen';
 include 'header.php';
@@ -24,7 +31,7 @@ include 'header.php';
             <div role="tabpanel" class="tab-pane active" id="home">             
              <div class="row">
                 <div class="col-md-6 container" id="previewDIV">
-				<a target="preview.jpg" class="snapshot-link"><img src="preview.jpg" alt="Preview" id="preview" class="img-rounded img-responsive"></a> <br>
+				<a target="<?php echo $newest_image; ?>" class="snapshot-link"><img src="<?php echo $newest_image; ?>" alt="Preview" id="preview" class="img-rounded img-responsive"></a> <br>
                 </div>
                <div class="col-md-6">
 				<button class="btn btn-lg btn-primary" id="auto-ausloesen" href="#" role="button" style="vertical-align: middle;"><i class="fa fa-camera"></i> Foto aufnehmen</button>
