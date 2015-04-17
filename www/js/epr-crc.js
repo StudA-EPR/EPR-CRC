@@ -66,13 +66,13 @@ function callSystemFunction(cmd) {
   }
 }
 
-// style spinner buttons in input fields
+// style spinner buttons in input fields            coming soon: prevention of values < 0
 (function ($) {
   $('.spinner .btn:first-of-type').on('click', function() {
-    $('.spinner input').val( parseInt($('.spinner input').val(), 10) + 1);
+    $(this).parent().prev().val( parseInt($(this).parent().prev().val(), 10) + 1);   
   });
   $('.spinner .btn:last-of-type').on('click', function() {
-    $('.spinner input').val( parseInt($('.spinner input').val(), 10) - 1);
+     $(this).parent().prev().val( parseInt($(this).parent().prev().val(), 10) + -1);
   });
 })(jQuery);
 

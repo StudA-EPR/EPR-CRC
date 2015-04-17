@@ -5,7 +5,7 @@
 			  <label class="col-md-4 control-label" for="appendedtext">Serienaufnahme</label>
 			  <div class="col-md-4">
 				<div class="input-group spinner">
-					<input id="serienbilderAnzahl" name="serienbilderAnzahlInput" class="form-control input-text" placeholder="Aufnahmen" type="text">
+					<input id="serienbilderAnzahl" name="serienbilderAnzahlInput" class="form-control input-text" value="0" placeholder="Aufnahmen" type="text">
 					<div class="input-group-btn-vertical">
 						<button type="button" class="btn btn-default"><i class="fa fa-caret-up"></i></button>
 						<button type="button"  class="btn btn-default"><i class="fa fa-caret-down"></i></button>
@@ -26,13 +26,13 @@
 			  <label class="col-md-4 control-label" for="appendedtext">Intervall</label>
 			  <div class="col-md-4">
 				<div class="input-group spinner">
-				  <input id="intervallSekunden" name="intervallSekundenInput" class="form-control input-text" placeholder="Sekunden" type="text">
+                  <input id="intervallSekunden" name="intervallSekundenInput" class="form-control input-text" value="0" placeholder="Sekunden" type="text">                  
 				  <div class="input-group-btn-vertical">
 						<button type="button" class="btn btn-default"><i class="fa fa-caret-up"></i></button>
 						<button type="button" class="btn btn-default"><i class="fa fa-caret-down"></i></button>
-					</div>
+					</div> 
 				</div>
-				<p class="help-block">Zeit zwischen den Aufnahmen eingeben</p>
+				<p class="help-block">Zeit (in Sekunden) zwischen den Aufnahmen eingeben</p>
 			  </div>
                <div class="col-md-4">
                 <label>
