@@ -39,20 +39,20 @@ var ladeKameraInfo = (function () {
                     $('#cameraInfoTable > tbody > tr').append('<td>'+ model + '</td>');
                     $.ajax({
                         url: "/option-json.php",
-                        data: {descriptor: "/main/status/batterylevel"},
+                        //data: {descriptor: "/main/status/batterylevel"},
+                        data: {descriptor: "/main/other/5001"},             //changend to this parameter because /main/status/batterylevel is not supported by reference camera Nikon Coolpix S3300
                         method: "GET",
                         dataType: "json",
                     })
                         .done( function(data) {
                             batterylevel = data.current;
-                            batterylevelNumber = batterylevel.slice(0,-1);
                             //$('#cameraInfoTable > tbody > tr').append('<td>'+ batterylevel + '</td>');
                             $('#cameraInfoTable > tbody > tr').append('<td>' +
                             '<div class=\"progress\">' +
-                            '<div class=\"progress-bar\" role=\"progressbar progress-bar-success\" aria-valuenow=\"'+ batterylevelNumber +'\"'+
-                            'aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:' + batterylevel +'\">'+
+                            '<div class=\"progress-bar\" role=\"progressbar progress-bar-success\" aria-valuenow=\"'+ batterylevel +'\"'+
+                            'aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:' + batterylevel + '%\">'+
                             batterylevel +
-                            '</div></div></td>');
+                            '%</div></div></td>');
                             ladeVerschlusszeit();
                         });
 
