@@ -83,6 +83,13 @@ var ladeVerschlusszeit = (function () {
                 //now data variable contains data in json format
                 var choices = data.choices;
                 var current = data.current;
+
+                if (data.type == "UNKNOWN") {                // check whether setting is a user-changeable option
+                    $selectboxVerschluss.empty();
+                    $('#verschlussinfo').text("Auswahl nicht möglich, da die angeschlossene Kamera diese Änderung nicht unterstützt");
+
+                }
+                else {
                 $selectboxVerschluss.removeAttr('disabled');
                 $selectboxVerschluss.empty();
 
@@ -101,6 +108,7 @@ var ladeVerschlusszeit = (function () {
                                 .text(value + " s"));
                     }
                 });
+            }
             } else {
                 // Error handling (show the exception):
                 $('#gphoto-exception-wrapper-extended').html(" \
@@ -133,40 +141,47 @@ var ladeBlende = (function () {
             $selectboxBlende.html('<option>lade Einstellungen </option>');
         }
     })
-        .done(function (blendedata) {
+        .done(function (data) {
 
-            if (blendedata.error === false) {
+            if (data.error === false) {
                 //data downloaded
                 //now data variable contains data in json format
-                var choices = blendedata.choices;
-                var current = blendedata.current;
-                $selectboxBlende.removeAttr('disabled');
-                $selectboxBlende.empty();
-                $.each(choices, function (key, value) {
-                    if (value == current) {
-                        $('#selectBlende')
-                            .append($("<option></option>")
-                                .attr("value", key)
-                                .prop("selected", "selected")
-                                .text(value));
-                    }
-                    else {
-                        $('#selectBlende')
-                            .append($("<option></option>")
-                                .attr("value", key)
-                                .text(value));
-                    }
-                });
+                var choices = data.choices;
+                var current = data.current;
+                if (data.type == "UNKNOWN") {                // check whether setting is a user-changeable option
+                    $selectboxBlende.empty();
+                    $('#blendeinfo').text("Auswahl nicht möglich, da die angeschlossene Kamera diese Änderung nicht unterstützt");
+
+                }
+                else {
+                    $selectboxBlende.removeAttr('disabled');
+                    $selectboxBlende.empty();
+                    $.each(choices, function (key, value) {
+                        if (value == current) {
+                            $('#selectBlende')
+                                .append($("<option></option>")
+                                    .attr("value", key)
+                                    .prop("selected", "selected")
+                                    .text(value));
+                        }
+                        else {
+                            $('#selectBlende')
+                                .append($("<option></option>")
+                                    .attr("value", key)
+                                    .text(value));
+                        }
+                    });
+                }
             } else {
                 // Error handling (show the exception):
                 $('#gphoto-exception-wrapper-extended').html(" \
 					<div class=\"alert alert-warning alert-dismissible\" role=\"alert\"> \
             <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> \
-            <strong>GPhotoException</strong> " + blendedata.message + " \
+            <strong>GPhotoException</strong> " + data.message + " \
             <br /> \
-            <strong>Exit code: </strong> " + blendedata.exitCode + " \
+            <strong>Exit code: </strong> " + data.exitCode + " \
             <br /> \
-            <strong>Stderr: </strong><br />" + blendedata.output + " \
+            <strong>Stderr: </strong><br />" + data.output + " \
         </div> \
 				");
             }
@@ -194,17 +209,21 @@ var checkAndLoadISO = (function () {
                 $('#gphoto-exception-wrapper-extended').html(" \
 					<div class=\"alert alert-warning alert-dismissible\" role=\"alert\"> \
             <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> \
-            <strong>GPhotoException</strong> " + blendedata.message + " \
+            <strong>GPhotoException</strong> " + data.message + " \
             <br /> \
-            <strong>Exit code: </strong> " + blendedata.exitCode + " \
+            <strong>Exit code: </strong> " + data.exitCode + " \
             <br /> \
-            <strong>Stderr: </strong><br />" + blendedata.output + " \
+            <strong>Stderr: </strong><br />" + data.output + " \
         </div> \
 				");
             }
 
-
-            ladeISO(isoautoState);
+            if (data.type == "UNKNOWN") {                // check whether setting is a user-changeable option               // if-condition placed at this positiion to prevent the additional call of function ladeISO()
+                $('#isoinfo').text("Auswahl nicht möglich, da die angeschlossene Kamera diese Änderung nicht unterstützt");
+            }
+            else {
+                ladeISO(isoautoState);
+            }
         });
 });
 
@@ -229,29 +248,36 @@ var ladeISO = (function (autoState) {
                 //now data variable contains data in json format
                 var choices = data.choices;
                 var current = data.current;
-                if (autoState== "On") //check whether iso automatic is activated or not
-                {
-                    $('#isoinfo').text("Auswahl nicht mglich, da ISO-Automatik aktiviert");
+                if (data.type == "UNKNOWN") {                // check whether setting is a user-changeable option
+                    $selectboxISO.empty();
+                    $('#isoinfo').text("Auswahl nicht möglich, da die angeschlossene Kamera diese Änderung nicht unterstützt");
+
                 }
                 else {
-                    $selectboxISO.removeAttr('disabled');
-                }
-                $selectboxISO.empty();
-                $.each(choices, function (key, value) {
-                    if (value == current) {
-                        $('#selectISO')
-                            .append($("<option></option>")
-                                .attr("value", key)
-                                .prop("selected", "selected")
-                                .text(value));
+                    if (autoState == "On") //check whether iso automatic is activated or not
+                    {
+                        $('#isoinfo').text("Auswahl nicht mglich, da ISO-Automatik aktiviert");
                     }
                     else {
-                        $('#selectISO')
-                            .append($("<option></option>")
-                                .attr("value", key)
-                                .text(value));
+                        $selectboxISO.removeAttr('disabled');
                     }
-                });
+                    $selectboxISO.empty();
+                    $.each(choices, function (key, value) {
+                        if (value == current) {
+                            $('#selectISO')
+                                .append($("<option></option>")
+                                    .attr("value", key)
+                                    .prop("selected", "selected")
+                                    .text(value));
+                        }
+                        else {
+                            $('#selectISO')
+                                .append($("<option></option>")
+                                    .attr("value", key)
+                                    .text(value));
+                        }
+                    });
+                }
             } else {
                 // Error handling (show the exception):
                 $('#gphoto-exception-wrapper-extended').html(" \

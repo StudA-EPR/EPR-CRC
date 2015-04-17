@@ -10,7 +10,7 @@
                   <select class="form-control" id="selectVerschlusszeit" name="verschlusszeit">
 
                    </select>               
-				<p class="help-block">Verschlusszeit für die Aufnahme wählen</p>
+				<p class="help-block" id="verschlussinfo">Verschlusszeit für die Aufnahme wählen</p>
 			  </div>
 			</div>
             
@@ -21,7 +21,7 @@
                   <select class="form-control" id="selectBlende" name="blende">
 
                    </select>
-				<p class="help-block">Blendeneinstellung für die Aufnahme wählen</p>
+				<p class="help-block" id="blendeinfo">Blendeneinstellung für die Aufnahme wählen</p>
 			  </div>
 			</div>
 
