@@ -21,16 +21,8 @@ $(document).ready( function () {
 				$('#gphoto-exception-wrapper').html('');
 			} else {
 				// Error handling (show the exception):
-				$('#gphoto-exception-wrapper').html(" \
-					<div class=\"alert alert-warning alert-dismissible\" role=\"alert\"> \
-            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> \
-            <strong>GPhotoException</strong> " + data.message + " \
-            <br /> \
-            <strong>Exit code: </strong> " + data.exitCode + " \
-            <br /> \
-            <strong>Stderr: </strong><br />" + data.output + " \
-        </div> \
-				");
+				var alertBox = generateGPhotoExceptionBox(data.message, data.exitCode, data.output);
+				$('#gphoto-exception-wrapper').html(alertBox);
 			}
 			
 			$btn.html('<i class="fa fa-camera"></i> Foto aufnehmen');

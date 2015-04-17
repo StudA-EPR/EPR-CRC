@@ -81,3 +81,16 @@ $('#myTab a').click(function (e) {
   e.preventDefault()
   $(this).tab('show')
 });
+
+function generateGPhotoExceptionBox(message, exitCode, output) {
+	return " \
+					<div class=\"alert alert-warning alert-dismissible\" role=\"alert\"> \
+            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> \
+            <strong>GPhotoException</strong> " + message + " \
+            <br /> \
+            <strong>Exit code: </strong> " + exitCode + " \
+            <br /> \
+            <strong>Stderr: </strong><br />" + output + " \
+        </div> \
+				";
+}
