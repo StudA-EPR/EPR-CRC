@@ -6,7 +6,7 @@
 
 require_once 'classes/httpparameters.php';
 require_once 'classes/gphoto.php';
-require_once 'classes/gphotoutils.php'
+require_once 'classes/gphotoutils.php';
 
 date_default_timezone_set('UTC');
 
