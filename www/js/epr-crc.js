@@ -28,12 +28,12 @@ function showStatus(){
 	$.getJSON( "/status.php?option=json", function( data ) {
 	  var items = [];
 	  $.each( data, function( key, val ) {
-		items.push( "<tr><td>" + key + "</td><td>" + val + "</td></tr>" );
+		items.push( "<tr><td>" + key + ": </td><td>" + val + "</td></tr>" );
 	  });
 	  // clear DropDown Box to prevent multiple appendings
 		$( "#statusDropDown" ).empty();
 		$( "<table/>", {
-			"class": "table",
+			"class": "table table-hover",
 			html: items.join( "" )
 		  }).appendTo( "#statusDropDown" );
 	 
