@@ -69,10 +69,25 @@ function callSystemFunction(cmd) {
 // style spinner buttons in input fields            coming soon: prevention of values < 0
 (function ($) {
   $('.spinner .btn:first-of-type').on('click', function() {
-    $(this).parent().prev().val( parseInt($(this).parent().prev().val(), 10) + 1);   
+	  //var wert = parseInt($(this).parent().prev().val(), 10);
+	  var wert= $(this).parent().prev().val();
+	  if (wert==parseInt(wert,10) && wert>=0) {
+		  $(this).parent().prev().val( parseInt($(this).parent().prev().val(), 10) + 1);
+	  }
+	  else {
+		  alert("Bitte geben Sie eine gültige (positive) Zahl ein");
+	  }
+
   });
   $('.spinner .btn:last-of-type').on('click', function() {
-     $(this).parent().prev().val( parseInt($(this).parent().prev().val(), 10) + -1);
+	  var wert= $(this).parent().prev().val();
+	  if (wert==parseInt(wert,10) && wert>=0) {
+		  $(this).parent().prev().val( parseInt($(this).parent().prev().val(), 10) + -1);
+	  }
+	  else {
+		  alert("Bitte geben Sie eine gültige (positive) Zahl ein");
+	  }
+
   });
 })(jQuery);
 
