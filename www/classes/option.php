@@ -116,7 +116,13 @@ class Option {
         $array['label']   = $this->label;
         $array['type']    = $this->type;
         $array['current'] = $this->current;
-        $array['choices'] = $this->choices;
+
+        // Create explicit key value pairs by using nested array to trick the json_encode function later.
+        $choiceKeyValuePairs = array();
+        foreach ($this->choices as $index => $value) {
+            $choiceKeyValuePairs[] = array(0 => $index, 1 => $value);
+        }
+        $array['choices'] = $choiceKeyValuePairs;
 
         return $array;
     }
