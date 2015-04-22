@@ -9,7 +9,7 @@
 				}
 				if($active_tab=="index") {
                     echo "<script src=\"js/snapshot.js\"></script>";
-                    echo "<script src=\"js/extended.js\"></script>";
+                    echo "<script src=\"js/settings.js\"></script>";
 				}
 				
 			}
