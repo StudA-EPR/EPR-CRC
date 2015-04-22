@@ -84,9 +84,9 @@ function buildSelectField(identifier, choices, current) {
         var choiceText        = choice[1];
 
         if (choiceText === current) {
-            markup += '<option value="' + choiceIndexNumber + '" selected>' + choiceText + '<option>';
+            markup += '<option value="' + choiceIndexNumber + '" selected>' + choiceText + '</option>';
         } else {
-            markup += '<option value="' + choiceIndexNumber + '">' + choiceText + '<option>';
+            markup += '<option value="' + choiceIndexNumber + '">' + choiceText + '</option>';
         }
     }
 
