@@ -20,9 +20,9 @@ include 'header.php';
 
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist" style="margin-bottom: 18px;">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Kamera auslösen</a></li>
-            <li role="presentation"><a href="#serienIntervall" aria-controls="serienIntervall" role="tab" data-toggle="tab">Serien- und Intervallaufnahme</a></li>
-            <li role="presentation"><a href="#kameraEinstellungen" id="tab-cam-settings" aria-controls="kameraEinstellungen" role="tab" data-toggle="tab">Kameraeinstellungen</a></li>
+            <li role="presentation" id="tab-cam" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Kamera auslösen</a></li>
+            <li role="presentation" id="tab-intervall"><a href="#serienIntervall" aria-controls="serienIntervall" role="tab" data-toggle="tab">Serien- und Intervallaufnahme</a></li>
+            <li role="presentation" id="tab-cam-settings"><a href="#kameraEinstellungen" aria-controls="kameraEinstellungen" role="tab" data-toggle="tab">Kameraeinstellungen</a></li>
           </ul>
 
           <!-- Tab panes -->

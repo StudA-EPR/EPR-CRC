@@ -25,7 +25,7 @@ function displayProgress(string) {
  * Displays an animation with a spinner at the cam settings tab.
  */
 function displaySpinnerAtTab() {
-    $('#tab-cam-settings').append(' <i id="cam-settings-tab-spinner" class="fa fa-spinner fa-spin"></i>');
+    $('#tab-cam-settings a').append(' <i id="cam-settings-tab-spinner" class="fa fa-spinner fa-spin"></i>');
 }
 
 /**
@@ -35,7 +35,7 @@ function displaySpinnerAtTab() {
  */
 function displayNumberOfOptionsInTab(number) {
     $('#cam-settings-tab-spinner').remove();
-    $('#tab-cam-settings').append('<span class="badge">' + number + '</span>');
+    $('#tab-cam-settings a').append('<span class="badge">' + number + '</span>');
 }
 
 /**
@@ -50,6 +50,22 @@ function disableSubmitButton() {
  */
 function enableSubmitButton() {
     $('#submit-settings').prop('disabled', false);
+}
+
+/**
+ * Disables other tabs than the settings tab.
+ */
+function disableOtherTabs() {
+    $('#tab-cam').addClass('disabled');
+    $('#tab-intervall').addClass('disabled');
+}
+
+/**
+ * Enables the other tabs than the settings tab if they were disabled.
+ */
+function enableOtherTabs() {
+    $('#tab-cam').removeClass('disabled');
+    $('#tab-intervall').removeClass('disabled');
 }
 
 /**
@@ -188,6 +204,7 @@ function loadOption(identifier, index) {
             displayProgress('');
             displayNumberOfOptionsInTab(identifiers.length);
             enableSubmitButton();
+            enableOtherTabs();
         }
     });
 }
@@ -201,6 +218,7 @@ function loadIdentifieres() {
         method: 'GET',
         dataType: 'json',
         beforeSend: function() {
+            disableOtherTabs();
             displayProgress('Lade verfügbare Konfigurationsoptionen ...');
             displaySpinnerAtTab();
         }
@@ -219,6 +237,7 @@ function loadIdentifieres() {
         } else {
             displayProgress('Keine Konfigurationsoptionen verfügbar.');
             displayNumberOfOptionsInTab(0);
+            enableOtherTabs();
         }
     });
 }
