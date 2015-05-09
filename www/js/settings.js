@@ -29,6 +29,13 @@ function displaySpinnerAtTab() {
 }
 
 /**
+ * Remove the spinner at the current tab.
+ */
+function removeSpinnerAtTab() {
+    $('#cam-settings-tab-spinner').remove();
+}
+
+/**
  * Displays the number of configuration options in the cam settings tab.
  *
  * @param number the number of configuration options
@@ -189,7 +196,6 @@ function loadOption(identifier, index) {
         }
     }).done(function(data) {
         if (data.error == false) {
-            console.log(identifier)
             buildUIElementsForOption(data.option, data.label, data.type, data.current, data.choices);
         } else {
             // Fehlernachricht anzeigen.
@@ -223,7 +229,6 @@ function loadIdentifieres() {
             displaySpinnerAtTab();
         }
     }).done(function(data) {
-        console.log('identifiers response received');
         if (data.error == false) {
             identifiers = data.identifiers;
         } else {
@@ -242,6 +247,55 @@ function loadIdentifieres() {
     });
 }
 
+/**
+ * Save the modified settings.
+ */
+function saveSettings() {
+    // Get all the values.
+    var values      = {};
+    var inputFields = $('#settings-box > .form-group > .col-md-4 > input');
+    var selectBoxes = $('#settings-box > .form-group > .col-md-4 > select');
+
+    // Extract the values from text/number input fields and checkboxes.
+    for (i in inputFields) {
+        var inputField = inputFields[i];
+        values[inputField.name] = inputField.value;
+    }
+
+    // Extract the values from select boxes.
+    for (i in selectBoxes) {
+        var selectBox = selectBoxes[i];
+        values[selectBox.name] = selectBox.value;
+    }
+
+    // Send all the values to the server. The server will detect what values differ from the
+    // curent ones and apply those changes.
+    $.ajax({
+        url: '/change-options.php',
+        method: 'POST',
+        dataType: 'json',
+        data: values,
+        beforeSend: function() {
+            disableSubmitButton();
+            disableOtherTabs();
+            displaySpinnerAtTab();
+            displayProgress('Wende Konfigurationsänderungen an ...');
+        }
+    }).done(function(data) {
+        if (data.error === true) {
+            // Display error message.
+            displayException(data.message, data.exitCode, data.output);
+            displayProgress('');
+        } else {
+            displayProgress(data.changes + ' Änderungen erfolgreich angewendet.');
+        }
+
+        enableSubmitButton();
+        enableOtherTabs();
+        removeSpinnerAtTab();
+    });
+}
+
 // Do all the stuff.
 $(document).ready(function() {
     $('#tab-cam-settings').on('shown.bs.tab', function() {
@@ -250,5 +304,9 @@ $(document).ready(function() {
             settingsLoaded = true;
             loadIdentifieres();
         }
-    })
+    });
+
+    $('#submit-settings').click(function () {
+        saveSettings();
+    });
 });

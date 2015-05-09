@@ -60,7 +60,7 @@ class HTTPParameters {
         return count($this->getArrayByMethod($method));
     }
 
-    protected function getArrayByMethod($method) {
+    public function getArrayByMethod($method) {
         if ($method === 'GET' || $method === 'get') {
             return $this->getParams;
         } elseif ($method === 'POST' || $method === 'post') {

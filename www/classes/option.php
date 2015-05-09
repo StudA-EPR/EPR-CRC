@@ -169,6 +169,10 @@ class Option {
         return $this->current;
     }
 
+    public function getCurrentIndex() {
+        return array_search($this->current, $this->choices);
+    }
+
     public function getChoices()
     {
         return $this->choices;
