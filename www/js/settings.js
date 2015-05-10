@@ -64,7 +64,6 @@ function enableSubmitButton() {
  */
 function disableOtherTabs() {
     $('#tab-cam').addClass('disabled');
-    $('#tab-intervall').addClass('disabled');
 }
 
 /**
@@ -72,7 +71,6 @@ function disableOtherTabs() {
  */
 function enableOtherTabs() {
     $('#tab-cam').removeClass('disabled');
-    $('#tab-intervall').removeClass('disabled');
 }
 
 /**
